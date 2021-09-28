@@ -9,6 +9,29 @@ const profileSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  gender: {
+    type: String,
+    enum: ['MALE', 'FEMALE', 'OTHER'],
+    required: true,
+    default: 'MALE'
+  },
+  birthDate: {
+    type: Date,
+    required: false
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  phoneNumber: {
+    type: Number,
+    required: true
+  },
+  location: {
+    type: String,
+    required: true
+  },
   description: {
     type: String,
     required: true
