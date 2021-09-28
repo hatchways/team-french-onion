@@ -39,7 +39,11 @@ const profileSchema = new mongoose.Schema({
   availability: [{
     type: Date, 
     required: true
-  }]
+  }],
+  profilePic: {
+    type: String,
+    default: ''
+  },
 });
 
 
