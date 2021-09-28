@@ -5,12 +5,18 @@ const asyncHandler = require("express-async-handler");
 // @desc Create new profile
 // @access Public
 exports.createProfile = asyncHandler(async (req, res, next) => {
-  const { firstName, lastName, description, availability } = req.body;
+  const { firstName, lastName, gender, birthDate, email, phoneNumber, location, profilePic, description, availability } = req.body;
 
   try {
     const profile = await Profile.create({
       firstName,
       lastName,
+      gender,
+      birthDate,
+      email,
+      phoneNumber,
+      location,
+      profilePic,
       description,
       availability,
     });
