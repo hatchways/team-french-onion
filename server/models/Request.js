@@ -29,7 +29,7 @@ const requestSchema = new mongoose.Schema({
         type: Boolean,
         default: False
     }
-})
+});
 
-module.exports = mongoose.model("request",requestSchema)
+module.exports = Request = mongoose.model("request",requestSchema);
 
