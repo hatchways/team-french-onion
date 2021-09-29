@@ -11,6 +11,6 @@ router.route("/update").put(updateProfile);
 
 router.route("/").get(protect, getProfile);
 
-router.route("/registered").get(protect, getAllProfiles);
+router.route("/profiles").get(protect, getAllProfiles);
 
 module.exports = router;
