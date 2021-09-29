@@ -20,11 +20,11 @@ const requestSchema = new mongoose.Schema({
     },
     status:{
         type: Boolean,
-        default: False
+        default: false
     },
     paid:{
         type: Boolean,
-        default: False
+        default: false
     }
 });
 
