@@ -1,35 +1,32 @@
 const mongoose = require("mongoose");
 
 const requestSchema = new mongoose.Schema({
-    user_id:{
+    userId:{
         type: String,
         required: true,
       },
-    sitter_id: {
+    sitterId:{
         type: String,
         required: true,
     },
-    start: {
+    start:{
         type: Date,
         required: true
     },
     end:{
         type: Date,
-        required: true
+        required: true,
+        min: this.start,
     },
-    accepted:{
+    status:{
         type: Boolean,
         default: False
     },
-    declined: {
-        type: Boolean,
-        default: False
-    },
-    paid: {
+    paid:{
         type: Boolean,
         default: False
     }
 });
 
-module.exports = Request = mongoose.model("request",requestSchema);
+module.exports = RequestModel = mongoose.model("request",requestSchema);
 
