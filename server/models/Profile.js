@@ -1,5 +1,18 @@
 const mongoose = require("mongoose");
 
+const timeSchema = new mongoose.Schema({
+  day: {
+    type: String,
+    enum: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"],
+    required: true,
+  },
+  //a regex will be defined for the time range
+  timeRange: {
+    type: String,
+    required: true,
+  },
+});
+
 const profileSchema = new mongoose.Schema({
   firstName: {
     type: String,
@@ -11,40 +24,36 @@ const profileSchema = new mongoose.Schema({
   },
   gender: {
     type: String,
-    enum: ['MALE', 'FEMALE', 'OTHER'],
+    enum: ["MALE", "FEMALE", "OTHER"],
     required: true,
-    default: 'MALE'
+    default: "MALE",
   },
-  birthDate: {
+  birthday: {
     type: Date,
-    required: false
+    required: false,
   },
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   phoneNumber: {
     type: Number,
-    required: true
+    required: true,
   },
   location: {
     type: String,
-    required: true
+    required: true,
   },
   description: {
     type: String,
-    required: true
+    required: true,
   },
-  availability: [{
-    type: Date, 
-    required: true
-  }],
+  availability: [timeSchema],
   profilePic: {
     type: String,
-    default: ''
+    default: "",
   },
 });
-
 
 module.exports = Profile = mongoose.model("profile", profileSchema);
