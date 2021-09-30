@@ -16,7 +16,6 @@ const requestSchema = new mongoose.Schema({
     end:{
         type: Date,
         required: true,
-        min: this.start,
     },
     status:{
         type: Boolean,
