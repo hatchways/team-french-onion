@@ -56,3 +56,39 @@ exports.postRequest = asyncHandler(async (req, res, next) => {
           throw new Error("Invalid request data");
         }
 });
+
+// @route PUT /requests/update?requestid=
+// @desc Update request status
+// @access Private
+
+exports.postRequest = asyncHandler(async (req, res, next) => {
+    const requestId = req.query.requestid;
+    
+    if (requestId){
+        
+    }
+
+
+    const newRequest = await Request.create({
+        userId,
+        sitterId,
+        start,
+        end,
+        status,
+        paid
+      });
+   
+
+    if (newRequest) {
+        res.status(201).json({
+            success: {
+              newRequest: {
+                id: newRequest._id,
+              }
+            }
+          });
+        } else {
+          res.status(400);
+          throw new Error("Invalid request data");
+        }
+});
