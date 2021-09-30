@@ -1,7 +1,7 @@
 const Request = require("../models/Request");
 const asyncHandler = require("express-async-handler");
 
-// @route GET /requests?userid=
+// @route GET /requests?userid={}
 // @desc Search for request of especific userId
 // @access Private
 
@@ -57,38 +57,31 @@ exports.postRequest = asyncHandler(async (req, res, next) => {
         }
 });
 
-// @route PUT /requests/update?requestid=
+// @route PUT /requests/update?requestid={}&status={}
 // @desc Update request status
 // @access Private
 
-exports.postRequest = asyncHandler(async (req, res, next) => {
+exports.updateRequest = asyncHandler(async (req, res, next) => {
     const requestId = req.query.requestid;
+    const status = req.query.status;
     
+    let updatedRequest
     if (requestId){
-        
+        updatedRequest = await Request.updateOne(
+            {_id: requestId }, 
+            {$set: {status: status}},{runValidators: true})
     }
-
-
-    const newRequest = await Request.create({
-        userId,
-        sitterId,
-        start,
-        end,
-        status,
-        paid
-      });
-   
-
-    if (newRequest) {
+    if (updatedRequest){
         res.status(201).json({
             success: {
-              newRequest: {
-                id: newRequest._id,
-              }
+             message: "Request updated", updatedRequest
             }
           });
-        } else {
-          res.status(400);
-          throw new Error("Invalid request data");
-        }
+    }else{
+        res.status(400);
+        throw new Error("The request was no updated");
+    }
+ 
+
+    
 });
