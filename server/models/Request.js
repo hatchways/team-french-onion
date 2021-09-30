@@ -18,8 +18,9 @@ const requestSchema = new mongoose.Schema({
         required: true,
     },
     status:{
-        type: Boolean,
-        default: false
+        type: String,
+        enum : ["accepted", "declined"],
+        default: "declined"
     },
     paid:{
         type: Boolean,
