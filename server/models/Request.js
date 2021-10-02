@@ -18,7 +18,7 @@ const RequestSchema = new mongoose.Schema({
         required: true,
         validate: {
             validator: function(v){
-            return v < this.start
+            return v > this.start
             },
             message: "End Date must later than Start Date"
         }
