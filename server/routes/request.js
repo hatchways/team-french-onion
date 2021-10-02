@@ -3,8 +3,8 @@ const router = express.Router();
 const protect = require("../middleware/auth");
 const { getRequests, postRequest, updateRequest } = require("../controllers/request");
 
-router.route("/").get(protect, getRequests);
-router.route("/new").post(postRequest);
-router.route("/update").put(protect, updateRequest);
+router.route("/").get(getRequests);
+router.route("/").post(postRequest);
+router.route("/:requestid").patch(updateRequest);
 
 module.exports = router;
