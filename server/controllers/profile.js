@@ -40,7 +40,7 @@ exports.createProfile = asyncHandler(async (req, res, next) => {
   }
 });
 
-// @route PUT /profile/:id
+// @route PUT /profile
 // @desc update a profile with given ID
 // @access Private
 exports.updateProfile = asyncHandler(async (req, res, next) => {
@@ -84,8 +84,8 @@ exports.updateProfile = asyncHandler(async (req, res, next) => {
   }
 });
 
-// @route GET /profile/:id
-// @desc update a profile with the given ID and parameters
+// @route GET /profile
+// @desc gets a profile with the given ID
 // @access Private
 exports.getProfile = asyncHandler(async (req, res, next) => {
   try {
