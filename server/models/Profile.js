@@ -6,7 +6,7 @@ const timeSchema = new mongoose.Schema({
     enum: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"],
     required: true,
   },
-  //a regex will be defined for the time range
+  //We may need to define a regex for the time range in the future
   timeRange: {
     type: String,
     required: true,
