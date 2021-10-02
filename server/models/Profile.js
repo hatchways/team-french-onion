@@ -32,6 +32,8 @@ const profileSchema = new mongoose.Schema({
     type: Date,
     required: false,
   },
+  /*we may need to discard this email path in the future
+  as it is also available in the users model. we can simply populate the profile model and retrieve user email*/
   email: {
     type: String,
     required: true,
