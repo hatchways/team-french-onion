@@ -59,8 +59,8 @@ exports.updateProfile = asyncHandler(async (req, res, next) => {
       description,
       availability,
     } = req.body;
-    const profile = await Profile.findByIdAndUpdate(
-      id,
+    const profile = await Profile.findOneAndUpdate(
+      {user: id},
       {
         firstName,
         lastName,
@@ -90,7 +90,7 @@ exports.updateProfile = asyncHandler(async (req, res, next) => {
 exports.getProfile = asyncHandler(async (req, res, next) => {
   try {
     const id = req.user._id;
-    const profile = await Profile.findById({ id });
+    const profile = await Profile.findOne({ user: id });
     res.status(200).json({
       profile,
     });
