@@ -60,7 +60,7 @@ exports.updateProfile = asyncHandler(async (req, res, next) => {
       availability,
     } = req.body;
     const profile = await Profile.findOneAndUpdate(
-      {user: id},
+      { user: id },
       {
         firstName,
         lastName,
