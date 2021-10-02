@@ -8,7 +8,9 @@ const {
   getAllProfiles,
 } = require("../controllers/profile");
 
-router.route("/update").put(validateProfileId, validateProfileDetails, updateProfile);
+router.route("/create").post(protect, validateProfileDetails, createProfile);
+
+router.route("/update").put(protect, validateProfileId, validateProfileDetails, updateProfile);
 
 router.route("/").get(protect, getProfile);
 
