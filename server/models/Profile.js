@@ -37,6 +37,12 @@ const profileSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+    unique: true,
+  },
   phoneNumber: {
     type: Number,
     required: true,
