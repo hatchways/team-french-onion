@@ -5,8 +5,8 @@ const genderOptions = ['MALE', 'FEMALE', 'OTHER'];
 const checkFalsyVal = {checkFalsy: true}
 
 exports.validateRegister = [
-  check("username", "Please enter a username").not().isEmpty(),
-  check("email", " ${msgPrefix}} email address").isEmail(),
+  check("username", `${msgPrefix} username`).notEmpty(),
+  check("email", `${msgPrefix} email address`).isEmail(),
   check(
     "password",
     "Please enter a password with 6 or more characters"
@@ -25,7 +25,7 @@ exports.validateRegister = [
 
 exports.validateLogin = [
   check("email", `${msgPrefix} email address`).isEmail(),
-  check("password", "Password is required").not().isEmpty(),
+  check("password", "Password is required").notEmpty(),
   (req, res, next) => {
     const errors = validationResult(req);
 
@@ -39,7 +39,7 @@ exports.validateProfileDetails = [
   check("firstName", ` ${msgPrefix} first name`).exists(checkFalsyVal).trim().escape().isLength({max: 20}),
   check("lastName", ` ${msgPrefix} last name`).exists(checkFalsyVal).trim().escape().isLength({max: 20}),
   check("gender", ` ${msgPrefix} gender`).exists(checkFalsyVal).isIn(genderOptions),
-  check("birthday", ` ${msgPrefix} birthday format`).exists(checkFalsyVal).toDate().isBefore('2002-01-01'),
+  check("birthday", ` ${msgPrefix} birthday format`).exists(checkFalsyVal).toDate(),
   check("email", ` ${msgPrefix} email address`).exists(checkFalsyVal).trim().escape().isEmail(),
   check("phoneNumber", ` ${msgPrefix} phone number`).exists(checkFalsyVal).trim().isMobilePhone(),
   check("location", ` ${msgPrefix} location`).exists(checkFalsyVal).trim().escape().isLength({max: 10}),
