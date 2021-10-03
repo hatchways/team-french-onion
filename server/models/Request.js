@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// TODO when User model is implemented use references for userId and sitterId , example= userId :{ type: Schema.Types.ObjectId, ref: "User"}
 const requestSchema = new mongoose.Schema({
   userId: {
     type: String,
