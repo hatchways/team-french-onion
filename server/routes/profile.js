@@ -15,7 +15,7 @@ router.route("/update").put(protect, validateProfileId, validateProfileDetails, 
 
 router.route("/").get(protect, getProfile);
 
-router.route("/picture").post(protect, uploadProfilePic);
+router.route("/picture").post(protect, validateDataUrl, uploadProfilePic);
 
 router.route("/profiles").get(protect, getAllProfiles);
 
