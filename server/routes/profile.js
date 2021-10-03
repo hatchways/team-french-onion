@@ -6,6 +6,7 @@ const {
   updateProfile,
   getProfile,
   getAllProfiles,
+  uploadProfilePic,
 } = require("../controllers/profile");
 
 router.route("/create").post(protect, validateProfileDetails, createProfile);
@@ -13,6 +14,8 @@ router.route("/create").post(protect, validateProfileDetails, createProfile);
 router.route("/update").put(protect, validateProfileId, validateProfileDetails, updateProfile);
 
 router.route("/").get(protect, getProfile);
+
+router.route("/picture").post(protect, uploadProfilePic);
 
 router.route("/profiles").get(protect, getAllProfiles);
 

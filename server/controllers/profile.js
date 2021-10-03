@@ -32,11 +32,11 @@ exports.createProfile = asyncHandler(async (req, res, next) => {
       availability,
     });
 
-    res.status(200).json({
+    res.status(201).json({
       profile,
     });
   } catch (err) {
-    res.status(400);
+    res.status(500);
     throw new Error("Something went wrong, please try again");
   }
 });
@@ -80,7 +80,7 @@ exports.updateProfile = asyncHandler(async (req, res, next) => {
       profile,
     });
   } catch (err) {
-    res.status(400);
+    res.status(500);
     throw new Error("Something went wrong, please try again");
   }
 });
@@ -96,7 +96,7 @@ exports.getProfile = asyncHandler(async (req, res, next) => {
       profile,
     });
   } catch (err) {
-    res.status(400);
+    res.status(500);
     throw new Error("Something went wrong, please try again");
   }
 });
@@ -111,7 +111,7 @@ exports.getAllProfiles = asyncHandler(async (req, res, next) => {
       profiles,
     });
   } catch (err) {
-    res.status(400);
+    res.status(500);
     throw new Error("Something went wrong, please try again");
   }
 });
@@ -125,12 +125,11 @@ exports.uploadProfilePic = asyncHandler(async (req, res, next) => {
     const {fileString} = req.body.data;
     const profile = await Profile.find({user: _id});
 
-    const uploadedResponse = await cloudinary.uploader.upload(fileString, {upload_preset: 'dogSittersAndOwnersPhotos'});
-
-    const updatedProfile = await 
+    const response = await cloudinary.uploader.upload(fileString, {upload_preset: 'dogSittersAndOwnersPhotos'});
+    profile.setProfilePic(response.url);
     
-    res.status(201).json({
-      msg: "Profile piture uploaded successfully",
+    res.status(200).json({
+      msg: "Profile picture uploaded successfully",
     });
   } catch (err) {
     res.status(500); 
