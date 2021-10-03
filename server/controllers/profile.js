@@ -1,5 +1,6 @@
 const Profile = require("../models/Profile");
 const asyncHandler = require("express-async-handler");
+const cloudinary = require("cloudinary");
 
 // @route POST /profile/create
 // @desc Create new profile
@@ -111,6 +112,28 @@ exports.getAllProfiles = asyncHandler(async (req, res, next) => {
     });
   } catch (err) {
     res.status(400);
+    throw new Error("Something went wrong, please try again");
+  }
+});
+
+// @route GET /profile
+// @desc get all profiles
+// @access Private
+exports.uploadProfilePic = asyncHandler(async (req, res, next) => {
+  try {
+    const {_id} = req.user;
+    const {fileString} = req.body.data;
+    const profile = await Profile.find({user: _id});
+
+    const uploadedResponse = await cloudinary.uploader.upload(fileString, {upload_preset: 'dogSittersAndOwnersPhotos'});
+
+    const updatedProfile = await 
+    
+    res.status(201).json({
+      msg: "Profile piture uploaded successfully",
+    });
+  } catch (err) {
+    res.status(500); 
     throw new Error("Something went wrong, please try again");
   }
 });
