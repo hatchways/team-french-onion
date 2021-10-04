@@ -64,7 +64,7 @@ exports.getAllNotifications = asyncHandler(async (req, res, next) => {
   try {
     const notifications = await Notification.find();
 
-    if (!natifications) return res.json({ msg: "0 results found" });
+    if (!natifications) return res.json({ msg: "No results found" });
 
     res.status(200).json({
       success: notifications,
@@ -79,7 +79,7 @@ exports.getUnreadNotifications = asyncHandler(async (req, res, next) => {
   try {
     const notifications = await Notification.find({ read: false });
 
-    if (!notification) return res.json({ msg: "0 results found" });
+    if (!notification) return res.json({ msg: "No results found" });
 
     res.status(200).json({
       success: notifications,
