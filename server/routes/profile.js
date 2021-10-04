@@ -1,6 +1,6 @@
 const express = require("express");
 const protect = require("../middleware/auth");
-const {validateProfileId, validateProfileDetails} = require("../validate")
+const { validateProfileId, validateProfileDetails } = require("../validate");
 const router = express.Router();
 const {
   updateProfile,
@@ -11,7 +11,9 @@ const {
 
 router.route("/create").post(protect, validateProfileDetails, createProfile);
 
-router.route("/update").put(protect, validateProfileId, validateProfileDetails, updateProfile);
+router
+  .route("/update")
+  .put(protect, validateProfileId, validateProfileDetails, updateProfile);
 
 router.route("/").get(protect, getProfile);
 

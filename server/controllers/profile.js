@@ -121,18 +121,20 @@ exports.getAllProfiles = asyncHandler(async (req, res, next) => {
 // @access Private
 exports.uploadProfilePic = asyncHandler(async (req, res, next) => {
   try {
-    const {_id} = req.user;
-    const {fileString} = req.body.data;
-    const profile = await Profile.find({user: _id});
+    const { _id } = req.user;
+    const { fileString } = req.body.data;
+    const profile = await Profile.find({ user: _id });
 
-    const response = await cloudinary.uploader.upload(fileString, {upload_preset: 'dogSittersAndOwnersPhotos'});
+    const response = await cloudinary.uploader.upload(fileString, {
+      upload_preset: "dogSittersAndOwnersPhotos",
+    });
     profile.setProfilePic(response.url);
-    
+
     res.status(200).json({
       msg: "Profile picture uploaded successfully",
     });
   } catch (err) {
-    res.status(500); 
+    res.status(500);
     throw new Error("Something went wrong, please try again");
   }
 });
