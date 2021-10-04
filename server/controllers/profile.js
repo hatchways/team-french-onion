@@ -92,7 +92,7 @@ exports.getProfile = asyncHandler(async (req, res, next) => {
     const id = req.user._id;
     const profile = await Profile.findOne({ user: id });
 
-    if (profile) {
+    if (!profile) {
       res.status(404);
       throw new Error("The profile does not exist");
     }
@@ -112,7 +112,7 @@ exports.getAllProfiles = asyncHandler(async (req, res, next) => {
   try {
     const profiles = await Profile.find();
 
-    if (profiles) {
+    if (!profiles) {
       res.status(500);
       throw new Error("0 results");
     }
