@@ -60,25 +60,14 @@ const profileSchema = new mongoose.Schema({
   },
   availability: [timeSchema],
   //we may need to store more images per profile
-  //profile pic will be saved in the photos array with 'profilPic' key
+  //profile pic will be saved in the photos array with 'profilePic' key
   photos: {
-    type: [
-      {
-        title: {
-          type: String,
-          unique: true,
-        },
-        url: {
-          type: String,
-          unique: true,
-        },
-      },
-    ],
+    type: [{}],
     default: "",
   },
 });
 profileSchema.methods.setProflePic = function (imgUrl) {
-  this.profilePic = imgUrl;
+  this.photos.profilePic = imgUrl;
   this.save();
 };
 

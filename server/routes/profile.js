@@ -1,5 +1,6 @@
 const express = require("express");
 const protect = require("../middleware/auth");
+const upload = require("../middleware/multer");
 const { validateProfileId, validateProfileDetails } = require("../validate");
 const router = express.Router();
 const {
@@ -17,7 +18,7 @@ router
 
 router.route("/").get(protect, getProfile);
 
-router.route("/picture").post(protect, validateDataUrl, uploadProfilePic);
+router.route("/upload").post(protect, upload.single("picture"), uploadProfilePic);
 
 router.route("/profiles").get(protect, getAllProfiles);
 

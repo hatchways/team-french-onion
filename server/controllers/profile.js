@@ -1,6 +1,6 @@
 const Profile = require("../models/Profile");
+const { cloudinary } = require("../utils/cloudinary");
 const asyncHandler = require("express-async-handler");
-const cloudinary = require("cloudinary");
 
 // @route POST /profile/create
 // @desc Create new profile
@@ -92,6 +92,11 @@ exports.getProfile = asyncHandler(async (req, res, next) => {
   try {
     const id = req.user._id;
     const profile = await Profile.findOne({ user: id });
+
+    if (!profile) {
+      res.status(404);
+      throw new Error("This profile does not exist");
+    }
     res.status(200).json({
       profile,
     });
@@ -116,22 +121,22 @@ exports.getAllProfiles = asyncHandler(async (req, res, next) => {
   }
 });
 
-// @route GET /profile
-// @desc get all profiles
-// @access Private
 exports.uploadProfilePic = asyncHandler(async (req, res, next) => {
   try {
     const { _id } = req.user;
-    const { fileString } = req.body.data;
     const profile = await Profile.find({ user: _id });
 
-    const response = await cloudinary.uploader.upload(fileString, {
+    if (!req.file) {
+      res.status(400);
+      throw new Error("You have not chosen any file");
+    }
+    const response = await cloudinary.uploader.upload(req.file.path, {
       upload_preset: "dogSittersAndOwnersPhotos",
     });
-    profile.setProfilePic(response.url);
+    profile.setProfilePic(response.secure_url);
 
     res.status(200).json({
-      msg: "Profile picture uploaded successfully",
+      msg: "Image uploaded successfully",
     });
   } catch (err) {
     res.status(500);
