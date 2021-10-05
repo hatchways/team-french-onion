@@ -86,7 +86,7 @@ exports.validateProfileDetails = [
   },
 ];
 
-exports.validateProfileId = [
+exports.validateMongoId = [
   check("_id", "Invalid profile ID").exists(checkFalsyVal).isMongoId(),
   (req, res, next) => {
     const errors = validationResult(req);
