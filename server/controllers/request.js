@@ -36,7 +36,7 @@ exports.postRequest = asyncHandler(async (req, res, next) => {
   });
 });
 
-// @route PATH /requests/:requestid
+// @route PATH /requests/:requestId
 // @desc Update request status
 // @access Private
 
