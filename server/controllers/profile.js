@@ -122,7 +122,6 @@ exports.getAllProfiles = asyncHandler(async (req, res, next) => {
 });
 
 exports.uploadProfilePic = asyncHandler(async (req, res, next) => {
-  try {
     const { _id } = req.user;
     const profile = await Profile.find({ user: _id });
 
@@ -133,13 +132,10 @@ exports.uploadProfilePic = asyncHandler(async (req, res, next) => {
     const response = await cloudinary.uploader.upload(req.file.path, {
       upload_preset: "dogSittersAndOwnersPhotos",
     });
-    profile.setProfilePic(response.secure_url);
+    console.log(response)
+    profile.addPhoto(response.secure_url, "profilePic");
 
     res.status(200).json({
       msg: "Image uploaded successfully",
     });
-  } catch (err) {
-    res.status(500);
-    throw new Error("Something went wrong, please try again");
-  }
 });
