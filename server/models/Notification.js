@@ -31,12 +31,7 @@ const notificationSchema = new mongoose.Schema({
     required: true,
     default: false
   },
-  date: {
-    type: Date,
-    required: true,
-    default: Date.now
-  },
-});
+}, { timestamps: true});
 
 notificationSchema.methods.toggleReadStatus = function () {
  this.read = !this.read;
