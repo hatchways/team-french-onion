@@ -8,6 +8,7 @@ const {
   getProfile,
   getAllProfiles,
   uploadProfilePic,
+  createProfile
 } = require("../controllers/profile");
 
 router.route("/create").post(protect, validateProfileDetails, createProfile);
@@ -18,7 +19,7 @@ router
 
 router.route("/").get(protect, getProfile);
 
-router.route("/upload").post(protect, upload.single("picture"), uploadProfilePic);
+router.route("/upload").post(upload.single("picture"), uploadProfilePic);
 
 router.route("/profiles").get(protect, getAllProfiles);
 
