@@ -6,6 +6,7 @@ const {
   updateProfile,
   getProfile,
   getAllProfiles,
+  createProfile,
 } = require("../controllers/profile");
 
 router.route("/create").post(protect, validateProfileDetails, createProfile);
