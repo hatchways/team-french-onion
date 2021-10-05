@@ -110,7 +110,9 @@ exports.validateNotificationDetails = [
     .isLength({ max: 20 }),
   check("description", ` ${msgPrefix} description`)
     .exists(checkFalsyVal)
-    .isIn(genderOptions),
+    .trim()
+    .escape()
+    .isLength({ max: 100 }),
   check("receipientEmail", ` ${msgPrefix} receipient email`)
     .exists(checkFalsyVal)
     .trim()

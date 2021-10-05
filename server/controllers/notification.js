@@ -29,10 +29,10 @@ exports.createNotification = asyncHandler(async (req, res, next) => {
 });
 
 exports.markNotificationAsRead = asyncHandler(async (req, res, next) => {
-  const { id } = req.params;
-  const notification = await Notification.findById(id);
+  const { _id } = req.params;
+  const notification = await Notification.findById(_id);
 
-  if (!natification) {
+  if (!notification) {
     res.status(404);
     throw new Error("The notification does not exist");
   }

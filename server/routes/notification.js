@@ -11,9 +11,9 @@ const {
 
 router
   .route("/create")
-  .post(protect, validateNotificationDetails, createNotification);
+  .post(validateNotificationDetails, createNotification);
 
-router.route("/check").post(protect, validateMongoId, markNotificationAsRead);
+router.route("/check/:_id").post(validateMongoId, markNotificationAsRead);
 
 router.route("/all").get(protect, getAllNotifications);
 
