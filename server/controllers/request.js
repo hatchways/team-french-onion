@@ -41,12 +41,12 @@ exports.postRequest = asyncHandler(async (req, res, next) => {
 // @access Private
 
 exports.updateRequest = asyncHandler(async (req, res, next) => {
-  const requestId = req.params.requestid;
+  const requestId = req.params.requestId;
   const status = req.body.status;
   const userId = req.user.id;
 
   const updatedRequest = await Request.findOne({ _id: requestId });
-  if (updatedRequest.userId == sitterId) {
+  if (updatedRequest.userId === sitterId) {
     updatedRequest.status = status;
     await updatedRequest.save();
     res.status(200).json({
