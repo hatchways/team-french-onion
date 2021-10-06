@@ -66,6 +66,7 @@ const profileSchema = new mongoose.Schema({
     default: "",
   },
 });
+
 profileSchema.methods.addPhoto = function (imgUrl, name) {
   this.photos.name = imgUrl;
   this.save();
