@@ -9,7 +9,7 @@ const {
   createProfile,
 } = require("../controllers/profile");
 
-router.route("/create").post(protect, validateProfileDetails, createProfile);
+router.route("/create").post(validateProfileDetails, createProfile);
 
 router
   .route("/update")
@@ -18,5 +18,7 @@ router
 router.route("/").get(protect, getProfile);
 
 router.route("/profiles").get(protect, getAllProfiles);
+const router = express.Router();
+const { createProfile } = require("../controllers/profile");
 
 module.exports = router;
