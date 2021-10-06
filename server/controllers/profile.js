@@ -110,30 +110,25 @@ exports.getProfile = asyncHandler(async (req, res, next) => {
 // @desc get all profiles
 // @access Private
 exports.getAllProfiles = asyncHandler(async (req, res, next) => {
-  try {
     const profiles = await Profile.find();
     res.status(200).json({
       profiles,
     });
-  } catch (err) {
-    res.status(500);
-    throw new Error("Something went wrong, please try again");
-  }
 });
 
 exports.uploadProfilePic = asyncHandler(async (req, res, next) => {
-    //const { _id } = req.user;
-    //const profile = await Profile.find({ user: _id });
+    const { _id, file } = req.user;
+    const profile = await Profile.find({ user: _id });
 
-    if (!req.file) {
+    if (!file) {
       res.status(400);
       throw new Error("Failed to upload photo, ensure that you have selected a valid file format")
     }
-      let response = await cloudinary.uploader.upload(req.file.path, {
+      const { secure_url } = await cloudinary.uploader.upload(file.path, {
         folder: "dogSittersAndOwnersPhotos"
       });
-      console.log("hi",response)
-      //profile.addPhoto(response.secure_url, "profilePic");
+
+      profile.addPhoto(secure_url, "profilePic");
   
       res.status(200).json({
         msg: "Image uploaded successfully",

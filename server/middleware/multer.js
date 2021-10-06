@@ -12,11 +12,13 @@ const upload = multer({
 });
 
 const checkFiletype = (file, cb) => {
+  const { originalname, mimetype } = file;
   const validExtName = /jpeg|jpg|png|gif/;
+
   const fileTypeCheck = validExtName.test(
-    path.extname(file.originalname).toLocaleLowerCase()
+    path.extname(originalname).toLocaleLowerCase()
   );
-  const mimeTypeCheck = validExtName.test(file.mimetype);
+  const mimeTypeCheck = validExtName.test(mimetype);
 
   if (fileTypeCheck && mimeTypeCheck) {
     return cb(null, true);
