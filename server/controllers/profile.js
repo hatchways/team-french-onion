@@ -122,20 +122,20 @@ exports.getAllProfiles = asyncHandler(async (req, res, next) => {
 });
 
 exports.uploadProfilePic = asyncHandler(async (req, res, next) => {
-    const { _id } = req.user;
-    const profile = await Profile.find({ user: _id });
+    //const { _id } = req.user;
+    //const profile = await Profile.find({ user: _id });
 
     if (!req.file) {
       res.status(400);
-      throw new Error("You have not chosen any file");
+      throw new Error("Failed to upload photo, ensure that you have selected a valid file format")
     }
-    const response = await cloudinary.uploader.upload(req.file.path, {
-      upload_preset: "dogSittersAndOwnersPhotos",
-    });
-    console.log(response)
-    profile.addPhoto(response.secure_url, "profilePic");
-
-    res.status(200).json({
-      msg: "Image uploaded successfully",
-    });
+      let response = await cloudinary.uploader.upload(req.file.path, {
+        folder: "dogSittersAndOwnersPhotos"
+      });
+      console.log("hi",response)
+      //profile.addPhoto(response.secure_url, "profilePic");
+  
+      res.status(200).json({
+        msg: "Image uploaded successfully",
+      }); 
 });
