@@ -17,6 +17,7 @@ export default function Dashboard(): JSX.Element {
   const history = useHistory();
 
   useEffect(() => {
+    console.log('dashboard rendered successfully');
     initSocket();
   }, [initSocket]);
 
