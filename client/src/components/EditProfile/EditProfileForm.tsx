@@ -94,7 +94,7 @@ const EditProfileForm = (): JSX.Element => {
 
   return (
     <Grid container className={root}>
-      <Grid item xs={2} className={sideBar}>
+      <Grid item xs={4} className={sideBar}>
         <List>
           <Box>
             <Typography className={sideBarItem}>Edit profile</Typography>
@@ -128,7 +128,7 @@ const EditProfileForm = (): JSX.Element => {
           </Box>
         </List>
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={8}>
         <Grid container className={root}>
           <Grid item xs={12}>
             <Container className={formContainer}>

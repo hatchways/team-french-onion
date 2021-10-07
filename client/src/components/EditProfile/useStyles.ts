@@ -35,15 +35,16 @@ const useStyles = makeStyles((theme) => ({
     '& p': { textAlign: 'center' },
   },
   formContainer: {
-    width: 770,
+    width: 700,
     margin: theme.spacing(0, 'auto'),
   },
   sideBar: {
     paddingTop: 20,
   },
   sideBarItem: {
-    width: 50,
+    width: 100,
     margin: theme.spacing(0, 'auto'),
+    fontSize: 20,
   },
   active: {
     fontWeight: 10,
