@@ -11,12 +11,17 @@ const useStyles = makeStyles(() => ({
   },
   logo: {
     display: 'flex',
-    flexGrow: 1,
-    marginTop: 20,
+    maxHeight: 50,
+    flexGrow: 3,
+    margin: 10,
+  },
+  logoText: {
+    marginLeft: 10,
+    paddingTop: 10,
   },
   authWrapper: {
     display: 'flex',
-    alignItems: 'flex-end',
+    /*alignItems: 'flex-end',*/
     justifyContent: 'space-between',
     flexDirection: 'column',
     minHeight: '100vh',
@@ -24,7 +29,6 @@ const useStyles = makeStyles(() => ({
   },
   header: {
     display: 'flex',
-    flexDirection: 'row',
   },
   welcome: {
     fontSize: 30,

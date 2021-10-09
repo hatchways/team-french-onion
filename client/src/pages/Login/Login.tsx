@@ -39,16 +39,16 @@ export default function Login(): JSX.Element {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={12} /*sm={8} md={7}*/ elevation={6} component={Paper} square>
-        <Box border={4} className={classes.authWrapper}>
+      <Grid item xs={12} sm={12} md={12} elevation={6} component={Paper} square>
+        <Box className={classes.authWrapper}>
           <Box className={classes.header}>
             <Box className={classes.logo}>
               <img width="50px" src={logo} />
-              <Typography component="h1" variant="h4">
+              <Typography className={classes.logoText} component="h1" variant="h4">
                 LovingSitter.
               </Typography>
             </Box>
-            <AuthHeader linkTo="/login" asideText="" btnText="Login" />
+            <AuthHeader linkTo="/login" asideText="Become a sitter" btnText="Login" />
             <AuthHeader linkTo="/signup" asideText="" btnText="Register" />
           </Box>
           <Box width="100%" maxWidth={450} p={3} alignSelf="center">

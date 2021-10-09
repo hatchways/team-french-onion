@@ -14,7 +14,7 @@ const AuthHeader = ({ linkTo, asideText, btnText }: Props): JSX.Element => {
   const classes = useStyles();
 
   return (
-    <Box border={3} p={1} className={classes.authHeader}>
+    <Box p={1} className={classes.authHeader}>
       <Typography className={classes.accAside}>{asideText}</Typography>
       <Link to={linkTo} className={classes.link}>
         <Button color="inherit" className={classes.accBtn} variant="contained">
