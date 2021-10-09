@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     color: '#b0b0b0',
     fontWeight: 400,
     textAlign: 'center',
-    marginRight: 35,
+    marginRight: 5,
     whiteSpace: 'nowrap',
     display: 'flex',
     alignItems: 'center',
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#ffffff',
     color: '#3a8dff',
     boxShadow: 'none',
-    marginRight: 35,
+    marginRight: 5,
   },
 }));
 

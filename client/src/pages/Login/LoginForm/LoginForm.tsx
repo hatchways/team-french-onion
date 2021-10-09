@@ -7,6 +7,10 @@ import Typography from '@material-ui/core/Typography';
 import useStyles from './useStyles';
 import { CircularProgress } from '@material-ui/core';
 
+import { useAuth } from '../../../context/useAuthContext';
+import { useSnackBar } from '../../../context/useSnackbarContext';
+import login from '../../../helpers/APICalls/login';
+
 interface Props {
   handleSubmit: (
     {
@@ -28,6 +32,26 @@ interface Props {
 
 export default function Login({ handleSubmit }: Props): JSX.Element {
   const classes = useStyles();
+  const { updateLoginContext } = useAuth();
+  const { updateSnackBarMessage } = useSnackBar();
+
+  const demoUser = {
+    email: 'demo@email.com',
+    password: 'demopassword',
+  };
+
+  const handleDemoUserLogin = () => {
+    login(demoUser.email, demoUser.password).then((data) => {
+      if (data.error) {
+        updateSnackBarMessage(data.error.message);
+      } else if (data.success) {
+        updateLoginContext(data.success);
+      } else {
+        console.error({ data });
+        updateSnackBarMessage('An unexpected error occurred. Please try again');
+      }
+    });
+  };
 
   return (
     <Formik
@@ -87,6 +111,16 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
           <Box textAlign="center">
             <Button type="submit" size="large" variant="contained" color="primary" className={classes.submit}>
               {isSubmitting ? <CircularProgress style={{ color: 'white' }} /> : 'Login'}
+            </Button>
+            <Button
+              type="button"
+              size="large"
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={handleDemoUserLogin}
+            >
+              {isSubmitting ? <CircularProgress style={{ color: 'white' }} /> : 'Demo User'}
             </Button>
           </Box>
           <div style={{ height: 95 }} />
