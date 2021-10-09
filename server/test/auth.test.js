@@ -37,6 +37,42 @@ describe("Tests for auth endpoints", () => {
       });
   });
 
+  describe("/GET /auth/user", () => {
+    it("it should return user info on success when logged in", (done) => {
+      agent
+        .get("/auth/user")
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.have.property("success");
+          res.body.success.should.have.property("user")
+          done();
+        });
+    });
+  });
+
+  describe("/GET /auth/logout", () => {
+    it("it should return 200 along with logout message", (done) => {
+      agent
+        .get("/auth/logout")
+        .end((err, res) => {
+          console.log(res.text);
+          res.should.have.status(200);
+          res.text.should.include("You have successfully logged out");
+          done();
+        });
+    });
+  });
+
+  describe("/GET /auth/user", () => {
+    it("it should return error when no user logged in", (done) => {
+      agent
+        .get("/auth/user")
+        .end((err, res) => {
+          res.should.have.status(401);
+          done();
+        });
+    });
+  });
 
   describe("/POST /auth/register", () => {
     it("it should return user on success", (done) => {
@@ -65,18 +101,7 @@ describe("Tests for auth endpoints", () => {
     });
   });
 
-  describe("/GET /auth/logout", () => {
-    it("it should return 200 along with logout message", (done) => {
-      request(app)
-        .get("/auth/logout")
-        .end((err, res) => {
-          console.log(res.text);
-          res.should.have.status(200);
-          res.text.should.include("You have successfully logged out");
-          done();
-        });
-    });
-  });
+
 
   describe("/POST /auth/login", () => {
     it("it should return 200 along with user", (done) => {
