@@ -10,6 +10,7 @@ import SignUpForm from './SignUpForm/SignUpForm';
 import AuthHeader from '../../components/AuthHeader/AuthHeader';
 import { useAuth } from '../../context/useAuthContext';
 import { useSnackBar } from '../../context/useSnackbarContext';
+import logo from '../../Images/68f55f7799df6c8078a874cfe0a61a5e6e9e1687.png';
 
 export default function Register(): JSX.Element {
   const classes = useStyles();
@@ -42,7 +43,17 @@ export default function Register(): JSX.Element {
       <CssBaseline />
       <Grid item xs={12} sm={12} md={12} elevation={6} component={Paper} square>
         <Box className={classes.authWrapper}>
-          <AuthHeader linkTo="/login" asideText="Already have an account?" btnText="Login" />
+          <Box className={classes.header}>
+            <Box className={classes.logo}>
+              <img width="50px" src={logo} />
+              <Typography className={classes.logoText} component="h1" variant="h4">
+                LovingSitter.
+              </Typography>
+            </Box>
+            <AuthHeader linkTo="/login" asideText="Already have an account?" btnText="Login" />
+            <AuthHeader linkTo="/signup" asideText="" btnText="Register" />
+          </Box>
+
           <Box width="100%" maxWidth={450} p={3} alignSelf="center">
             <Grid container>
               <Grid item xs>

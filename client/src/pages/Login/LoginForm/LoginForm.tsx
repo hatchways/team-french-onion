@@ -10,6 +10,7 @@ import { CircularProgress } from '@material-ui/core';
 import { useAuth } from '../../../context/useAuthContext';
 import { useSnackBar } from '../../../context/useSnackbarContext';
 import login from '../../../helpers/APICalls/login';
+import { demoUser } from '../../../mocks/mockUser';
 
 interface Props {
   handleSubmit: (
@@ -34,14 +35,10 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
   const classes = useStyles();
   const { updateLoginContext } = useAuth();
   const { updateSnackBarMessage } = useSnackBar();
-
-  const demoUser = {
-    email: 'demo@email.com',
-    password: 'demopassword',
-  };
+  const { email, password } = demoUser;
 
   const handleDemoUserLogin = () => {
-    login(demoUser.email, demoUser.password).then((data) => {
+    login(email, password).then((data) => {
       if (data.error) {
         updateSnackBarMessage(data.error.message);
       } else if (data.success) {

@@ -19,16 +19,16 @@ const useStyles = makeStyles(() => ({
     marginLeft: 10,
     paddingTop: 10,
   },
+  header: {
+    display: 'flex',
+  },
   authWrapper: {
     display: 'flex',
     /*alignItems: 'flex-end',*/
     justifyContent: 'space-between',
     flexDirection: 'column',
     minHeight: '100vh',
-    paddingTop: 2,
-  },
-  header: {
-    display: 'flex',
+    paddingTop: 23,
   },
   welcome: {
     fontSize: 30,
