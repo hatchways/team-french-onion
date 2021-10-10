@@ -7,6 +7,9 @@ import { useSocket } from '../../context/useSocketContext';
 import { useHistory } from 'react-router-dom';
 import ChatSideBanner from '../../components/ChatSideBanner/ChatSideBanner';
 import { useEffect } from 'react';
+import logo from '../../Images/68f55f7799df6c8078a874cfe0a61a5e6e9e1687.png';
+import LogoHeader from '../../components/LogoHeader/LogoHeader';
+import NavBar from '../../components/NavBar/NavBar';
 
 export default function Dashboard(): JSX.Element {
   const classes = useStyles();
@@ -30,6 +33,7 @@ export default function Dashboard(): JSX.Element {
   return (
     <Grid container component="main" className={`${classes.root} ${classes.dashboard}`}>
       <CssBaseline />
+      <NavBar loggedInUser={loggedInUser} />
       <Grid item className={classes.drawerWrapper}>
         <ChatSideBanner loggedInUser={loggedInUser} />
       </Grid>
