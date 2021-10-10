@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
     color: '#ffffff',
     boxShadow: 'none',
     marginRight: 5,
+    fontSize: 15,
   },
 }));
 

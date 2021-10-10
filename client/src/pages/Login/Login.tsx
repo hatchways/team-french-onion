@@ -11,6 +11,8 @@ import AuthHeader from '../../components/AuthHeader/AuthHeader';
 import { useAuth } from '../../context/useAuthContext';
 import { useSnackBar } from '../../context/useSnackbarContext';
 import logo from '../../Images/68f55f7799df6c8078a874cfe0a61a5e6e9e1687.png';
+import LogoHeader from '../../components/LogoHeader/LogoHeader';
+import { AppBar } from '@material-ui/core';
 
 export default function Login(): JSX.Element {
   const classes = useStyles();
@@ -41,25 +43,29 @@ export default function Login(): JSX.Element {
       <CssBaseline />
       <Grid item xs={12} sm={12} md={12} elevation={6} component={Paper} square>
         <Box className={classes.authWrapper}>
+          <AppBar position="sticky" className={classes.header}>
+            <LogoHeader logo={logo} />
+            <AuthHeader linkTo="/login" asideText="" btnText="LOGIN" />
+            <AuthHeader linkTo="/signup" asideText="" btnText="SIGNUP" />
+          </AppBar>
+          {/** 
           <Box className={classes.header}>
-            <Box className={classes.logo}>
-              <img width="50px" src={logo} />
-              <Typography className={classes.logoText} component="h1" variant="h4">
-                LovingSitter.
-              </Typography>
-            </Box>
+            <LogoHeader logo={logo} />
             <AuthHeader linkTo="/login" asideText="Become a sitter" btnText="Login" />
             <AuthHeader linkTo="/signup" asideText="" btnText="Register" />
           </Box>
-          <Box width="100%" maxWidth={450} p={3} alignSelf="center">
-            <Grid container>
-              <Grid item xs>
-                <Typography className={classes.welcome} component="h1" variant="h5">
-                  Welcome back!
-                </Typography>
+          */}
+          <Box width="50%" alignSelf="center" className={classes.loginArea}>
+            <Box width="100%" maxWidth={450} p={3} alignSelf="center">
+              <Grid container>
+                <Grid item xs>
+                  <Typography className={classes.welcome} component="h1" variant="h5">
+                    Welcome back!
+                  </Typography>
+                </Grid>
               </Grid>
-            </Grid>
-            <LoginForm handleSubmit={handleSubmit} />
+              <LoginForm handleSubmit={handleSubmit} />
+            </Box>
           </Box>
           <Box p={1} alignSelf="center" />
         </Box>
