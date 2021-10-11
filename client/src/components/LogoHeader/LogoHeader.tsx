@@ -12,11 +12,11 @@ const LogoHeader = ({ loggedIn }: Props): JSX.Element => {
   const classes = useStyles();
 
   return (
-    <MUILink component={RouterLink} to={loggedIn ? '/dashboard' : '/login'}>
-      <Box className={classes.logo}>
+    <Box className={classes.logo}>
+      <MUILink component={RouterLink} to={loggedIn ? '/dashboard' : '/login'}>
         <img width="auto" src={logo} />
-      </Box>
-    </MUILink>
+      </MUILink>
+    </Box>
   );
 };
 
