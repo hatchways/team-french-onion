@@ -18,7 +18,7 @@ const NavBar = ({ loggedInUser }: Props): JSX.Element => {
     <Box style={{ height: 70 }}>
       {/*Add Box parent to push other content down, can remove box to fix nav bar to top of screen*/}
       <AppBar position="sticky" className={classes.appBar}>
-        <LogoHeader logo={logo} />
+        <LogoHeader />
         <Box className={classes.appBarButtonsWrapper}>
           <Link to="/">
             <Button className={classes.appBarButtons}>Notifications</Button>

@@ -1,12 +1,9 @@
 import Box from '@material-ui/core/Box';
 import useStyles from './useStyles';
 import { Typography } from '@material-ui/core';
+import logo from '../../../src/Images/logo.png';
 
-interface Props {
-  logo: string;
-}
-
-const LogoHeader = ({ logo }: Props): JSX.Element => {
+const LogoHeader = (): JSX.Element => {
   const classes = useStyles();
 
   return (
