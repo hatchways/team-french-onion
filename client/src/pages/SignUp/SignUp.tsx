@@ -46,22 +46,10 @@ export default function Register(): JSX.Element {
       <Grid item xs={12} sm={12} md={12} elevation={6} component={Paper} square>
         <Box className={classes.authWrapper}>
           <AppBar position="sticky" className={classes.header}>
-            <LogoHeader logo={logo} />
+            <LogoHeader loggedIn={false} />
             <AuthHeader linkTo="/login" asideText="" btnText="LOGIN" />
             <AuthHeader linkTo="/signup" asideText="" btnText="SIGNUP" />
           </AppBar>
-
-          {/** 
-          <Box className={classes.header}>
-            <Box className={classes.logo}>
-              <img width="50px" src={logo} />
-              <Typography className={classes.logoText} component="h1" variant="h4">
-                LovingSitter.
-              </Typography>
-            </Box>
-            <AuthHeader linkTo="/login" asideText="Already have an account?" btnText="Login" />
-            <AuthHeader linkTo="/signup" asideText="" btnText="Register" />
-          </Box>*/}
           <Box width="50%" alignSelf="center" className={classes.loginArea}>
             <Box width="100%" maxWidth={450} p={3} alignSelf="center">
               <Grid container>

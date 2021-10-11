@@ -44,17 +44,10 @@ export default function Login(): JSX.Element {
       <Grid item xs={12} sm={12} md={12} elevation={6} component={Paper} square>
         <Box className={classes.authWrapper}>
           <AppBar position="sticky" className={classes.header}>
-            <LogoHeader logo={logo} />
+            <LogoHeader loggedIn={false} />
             <AuthHeader linkTo="/login" asideText="" btnText="LOGIN" />
             <AuthHeader linkTo="/signup" asideText="" btnText="SIGNUP" />
           </AppBar>
-          {/** 
-          <Box className={classes.header}>
-            <LogoHeader logo={logo} />
-            <AuthHeader linkTo="/login" asideText="Become a sitter" btnText="Login" />
-            <AuthHeader linkTo="/signup" asideText="" btnText="Register" />
-          </Box>
-          */}
           <Box width="50%" alignSelf="center" className={classes.loginArea}>
             <Box width="100%" maxWidth={450} p={3} alignSelf="center">
               <Grid container>
