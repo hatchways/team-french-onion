@@ -7,6 +7,7 @@ import { useAuth } from '../../context/useAuthContext';
 import AvatarDisplay from '../AvatarDisplay/AvatarDisplay';
 import { User } from '../../interface/User';
 import Avatar from '@material-ui/core/Avatar';
+import { Link } from 'react-router-dom';
 
 interface Props {
   loggedIn: boolean;
@@ -57,7 +58,9 @@ const AuthMenu = ({ user }: Props): JSX.Element => {
         }}
         getContentAnchorEl={null}
       >
-        <MenuItem onClick={handleLogout}>Profile</MenuItem>
+        <MenuItem component={Link} to="/profile">
+          Profile
+        </MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </div>
