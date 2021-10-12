@@ -42,7 +42,7 @@ const NavBar = ({ loggedIn, user }: Props): JSX.Element => {
         <MUILink component={RouterLink} to={'/'}>
           <Button className={classes.appBarButtons}>Requests</Button>
         </MUILink>
-        <Box display={'flex'} pl={2} pr={2}>
+        <Box px={3}>
           <AuthMenu loggedIn user={user} />
         </Box>
       </Box>
