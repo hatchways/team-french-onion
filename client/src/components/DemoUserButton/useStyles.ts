@@ -12,9 +12,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#fd513e',
     fontWeight: 'bold',
   },
-  progress: {
-    color: 'white',
-  },
 }));
 
 export default useStyles;
