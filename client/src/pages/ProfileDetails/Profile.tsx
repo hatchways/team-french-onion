@@ -33,8 +33,12 @@ export default function Profile(): JSX.Element {
       <CssBaseline />
       <NavBar loggedIn user={loggedInUser} />
       <Grid container spacing={5}>
-        <Grid item>Left side</Grid>
-        <Grid item>Right side</Grid>
+        <Grid item className={classes.gridItem}>
+          Left side
+        </Grid>
+        <Grid item className={classes.gridItem}>
+          Right side
+        </Grid>
       </Grid>
     </Grid>
   );
