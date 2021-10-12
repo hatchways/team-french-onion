@@ -6,11 +6,6 @@ import * as Yup from 'yup';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './useStyles';
 import { CircularProgress } from '@material-ui/core';
-
-import { useAuth } from '../../../context/useAuthContext';
-import { useSnackBar } from '../../../context/useSnackbarContext';
-import login from '../../../helpers/APICalls/login';
-import { demoUser } from '../../../mocks/mockUser';
 import DemoUserButton from '../../../components/DemoUserButton/DemoUserButton';
 
 interface Props {
@@ -34,22 +29,6 @@ interface Props {
 
 export default function Login({ handleSubmit }: Props): JSX.Element {
   const classes = useStyles();
-  const { updateLoginContext } = useAuth();
-  const { updateSnackBarMessage } = useSnackBar();
-  const { email, password } = demoUser;
-
-  const handleDemoUserLogin = () => {
-    login(email, password).then((data) => {
-      if (data.error) {
-        updateSnackBarMessage(data.error.message);
-      } else if (data.success) {
-        updateLoginContext(data.success);
-      } else {
-        console.error({ data });
-        updateSnackBarMessage('An unexpected error occurred. Please try again');
-      }
-    });
-  };
 
   return (
     <Formik
