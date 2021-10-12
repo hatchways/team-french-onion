@@ -1,10 +1,11 @@
 import Box from '@material-ui/core/Box';
 import useStyles from './useStyles';
-import { AppBar, Button, Grid } from '@material-ui/core';
+import { AppBar, Button } from '@material-ui/core';
 import LogoHeader from '../LogoHeader/LogoHeader';
 import AuthMenu from '../AuthMenu/AuthMenu';
 import { User } from '../../interface/User';
 import { Link as RouterLink } from 'react-router-dom';
+import { Link as MUILink } from '@material-ui/core';
 import AuthHeader from '../AuthHeader/AuthHeader';
 
 interface Props {
@@ -26,20 +27,22 @@ const NavBar = ({ loggedIn, user }: Props): JSX.Element => {
 
   const userNav = () => {
     return (
-      <Box className={classes.appBarButtonsWrapper}>
-        <RouterLink to="/">
+      <Box display={'flex'} alignItems={'center'} justifyContent={'space-evenly'}>
+        {/* TODO: Refactor links to Array.map, going to leave it for now and wait and see 
+        info coming in from profiles as we may need to make changes to Model*/}
+        <MUILink component={RouterLink} to={'/'}>
           <Button className={classes.appBarButtons}>Notifications</Button>
-        </RouterLink>
-        <RouterLink to="/">
+        </MUILink>
+        <MUILink component={RouterLink} to={'/'}>
           <Button className={classes.appBarButtons}>Messages</Button>
-        </RouterLink>
-        <RouterLink to="/">
+        </MUILink>
+        <MUILink component={RouterLink} to={'/'}>
           <Button className={classes.appBarButtons}>My Jobs</Button>
-        </RouterLink>
-        <RouterLink to="/">
+        </MUILink>
+        <MUILink component={RouterLink} to={'/'}>
           <Button className={classes.appBarButtons}>Requests</Button>
-        </RouterLink>
-        <Box className={classes.profileIconWrapper}>
+        </MUILink>
+        <Box display={'flex'} pl={2} pr={2}>
           <AuthMenu loggedIn user={user} />
         </Box>
       </Box>
@@ -50,7 +53,7 @@ const NavBar = ({ loggedIn, user }: Props): JSX.Element => {
     <Box height="70">
       {/*Add Box parent to push other content down, can remove box to fix nav bar to top of screen*/}
       <AppBar position="sticky" className={classes.appBar}>
-        <LogoHeader loggedIn={loggedIn} />
+        <LogoHeader loggedIn />
         {loggedIn ? userNav() : guestNav()}
       </AppBar>
     </Box>
