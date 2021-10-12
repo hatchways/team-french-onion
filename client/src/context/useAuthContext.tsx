@@ -43,7 +43,6 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
   // use our cookies to check if we can login straight away
   useEffect(() => {
     const checkLoginWithCookies = async () => {
-      /*
       await loginWithCookies().then((data: AuthApiData) => {
         if (data.success) {
           updateLoginContext(data.success);
@@ -53,7 +52,7 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
           setLoggedInUser(null);
           history.push('/login');
         }
-      });*/
+      });
     };
     checkLoginWithCookies();
   }, [updateLoginContext, history]);

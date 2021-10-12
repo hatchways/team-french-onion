@@ -11,6 +11,7 @@ import { useAuth } from '../../../context/useAuthContext';
 import { useSnackBar } from '../../../context/useSnackbarContext';
 import login from '../../../helpers/APICalls/login';
 import { demoUser } from '../../../mocks/mockUser';
+import DemoUserButton from '../../../components/DemoUserButton/DemoUserButton';
 
 interface Props {
   handleSubmit: (
@@ -111,16 +112,7 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
             <Button type="submit" size="large" variant="contained" color="primary" className={classes.submit}>
               {isSubmitting ? <CircularProgress style={{ color: 'white' }} /> : 'Login'}
             </Button>
-            <Button
-              type="button"
-              size="large"
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick={handleDemoUserLogin}
-            >
-              {isSubmitting ? <CircularProgress style={{ color: 'white' }} /> : 'Demo User'}
-            </Button>
+            <DemoUserButton />
           </Box>
           <div style={{ height: 95 }} />
         </form>
