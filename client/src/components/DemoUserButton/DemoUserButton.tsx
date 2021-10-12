@@ -7,7 +7,7 @@ import login from '../../helpers/APICalls/login';
 import { demoUser } from '../../mocks/mockUser';
 import { useState } from 'react';
 
-export default function DemoUser(): JSX.Element {
+const DemoUserButton = (): JSX.Element => {
   const classes = useStyles();
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const { updateSnackBarMessage } = useSnackBar();
@@ -39,4 +39,6 @@ export default function DemoUser(): JSX.Element {
       {isSubmitting ? <CircularProgress style={{ color: 'white' }} /> : 'Demo User'}
     </Button>
   );
-}
+};
+
+export default DemoUserButton;
