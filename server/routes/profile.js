@@ -19,7 +19,7 @@ router
 
 router.route("/").get(protect, getProfile);
 
-router.route("/upload").post(upload.single("picture"), uploadProfilePic);
+router.route("/upload").post(upload.single("photo"), uploadProfilePic);
 
 router.route("/profiles").get(protect, getAllProfiles);
 

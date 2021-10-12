@@ -129,8 +129,9 @@ exports.uploadProfilePic = asyncHandler(async (req, res, next) => {
       });
 
       profile.addPhoto(secure_url, "profilePic");
+      profile.save();
   
       res.status(200).json({
-        msg: "Image uploaded successfully",
+        message: "Image uploaded successfully",
       }); 
 });
