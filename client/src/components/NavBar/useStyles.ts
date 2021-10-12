@@ -7,12 +7,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
   },
-  appBarButtonsWrapper: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-    minWidth: 400,
-  },
   appBarButtons: {
     fontFamily: 'Arial',
     fontSize: 14,
@@ -21,13 +15,6 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: 'rgba(0, 0, 0, 0.3);',
       textDecoration: 'underline',
     },
-  },
-  profileIconWrapper: {
-    display: 'flex',
-    alignItems: 'center',
-    minWidth: 50,
-    paddingLeft: 25,
-    paddingRight: 25,
   },
 }));
 

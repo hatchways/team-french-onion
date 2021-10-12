@@ -84,6 +84,7 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
             helperText={touched.email ? errors.email : ''}
             error={touched.email && Boolean(errors.email)}
             value={values.email}
+            variant="outlined"
             onChange={handleChange}
           />
           <TextField
@@ -103,6 +104,7 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
             helperText={touched.password ? errors.password : ''}
             error={touched.password && Boolean(errors.password)}
             value={values.password}
+            variant="outlined"
             onChange={handleChange}
           />
           <Box textAlign="center">

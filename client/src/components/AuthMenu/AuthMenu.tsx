@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 interface Props {
   loggedIn: boolean;
-  user: User;
+  user?: User;
 }
 
 const AuthMenu = ({ user }: Props): JSX.Element => {
@@ -44,7 +44,7 @@ const AuthMenu = ({ user }: Props): JSX.Element => {
         aria-haspopup="true"
         onClick={handleClick}
         alt="Profile Image"
-        src={`https://robohash.org/${user.email}.png`}
+        src={`https://robohash.org/${user?.email}.png`}
       />
       <Menu
         id="auth-menu"

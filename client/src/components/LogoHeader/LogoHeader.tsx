@@ -1,21 +1,21 @@
-import Box from '@material-ui/core/Box';
 import useStyles from './useStyles';
-import { Typography } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import logo from '../../../src/Images/logo.png';
+import { Link as RouterLink } from 'react-router-dom';
+import { Link as MUILink } from '@material-ui/core';
 
 interface Props {
-  logo: string;
+  loggedIn: boolean;
 }
 
-const LogoHeader = ({ logo }: Props): JSX.Element => {
+const LogoHeader = ({ loggedIn }: Props): JSX.Element => {
   const classes = useStyles();
 
   return (
     <Box className={classes.logo}>
-      {/*TODO: Add link*/}
-      <img width="50px" src={logo} />
-      <Typography className={classes.logoText} component="h1" variant="h4">
-        LovingSitter.
-      </Typography>
+      <MUILink component={RouterLink} to={loggedIn ? '/dashboard' : '/login'}>
+        <img width="auto" src={logo} />
+      </MUILink>
     </Box>
   );
 };
