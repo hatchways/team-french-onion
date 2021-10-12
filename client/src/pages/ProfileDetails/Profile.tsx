@@ -7,6 +7,7 @@ import { useSocket } from '../../context/useSocketContext';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import NavBar from '../../components/NavBar/NavBar';
+import { Box } from '@material-ui/core';
 
 export default function Profile(): JSX.Element {
   const classes = useStyles();
@@ -30,7 +31,11 @@ export default function Profile(): JSX.Element {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <NavBar loggedInUser={loggedInUser} />
+      <NavBar loggedIn user={loggedInUser} />
+      <Grid container spacing={5}>
+        <Grid item>Left side</Grid>
+        <Grid item>Right side</Grid>
+      </Grid>
     </Grid>
   );
 }

@@ -44,6 +44,7 @@ export default function Dashboard(): JSX.Element {
         <DashboardSearch />
       </Grid>
 
+      {/**Currently using mock profiles, need to change to actual list of profiles from api call */}
       <Grid container spacing={5} className={classes.listingsWrapper}>
         {Array.from(mockProfiles).map((_, index) => (
           <Grid item xs={2} sm={4} md={4} key={index} className={classes.listingItem}>
