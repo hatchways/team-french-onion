@@ -24,9 +24,10 @@ function App(): JSX.Element {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/demo" component={Dashboard} />
-                <ProtectedRoute exact path="/dashboard">
-                  <Dashboard />
-                </ProtectedRoute>
+                <ProtectedRoute component={Dashboard} exact path="/dashboard" />
+                {/* <Route path="*">
+                  <Redirect to="/login" />
+                </Route> */}
               </Switch>
             </SocketProvider>
           </AuthProvider>
