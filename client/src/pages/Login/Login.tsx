@@ -7,12 +7,9 @@ import Typography from '@material-ui/core/Typography';
 import useStyles from './useStyles';
 import login from '../../helpers/APICalls/login';
 import LoginForm from './LoginForm/LoginForm';
-import AuthHeader from '../../components/AuthHeader/AuthHeader';
 import { useAuth } from '../../context/useAuthContext';
 import { useSnackBar } from '../../context/useSnackbarContext';
-import logo from '../../Images/68f55f7799df6c8078a874cfe0a61a5e6e9e1687.png';
-import LogoHeader from '../../components/LogoHeader/LogoHeader';
-import { AppBar } from '@material-ui/core';
+import NavBar from '../../components/NavBar/NavBar';
 
 export default function Login(): JSX.Element {
   const classes = useStyles();
@@ -43,11 +40,7 @@ export default function Login(): JSX.Element {
       <CssBaseline />
       <Grid item xs={12} sm={12} md={12} elevation={6} component={Paper} square>
         <Box className={classes.authWrapper}>
-          <AppBar position="sticky" className={classes.header}>
-            <LogoHeader loggedIn={false} />
-            <AuthHeader linkTo="/login" asideText="" btnText="LOGIN" />
-            <AuthHeader linkTo="/signup" asideText="" btnText="SIGNUP" />
-          </AppBar>
+          <NavBar loggedIn={false} user={undefined} />
           <Box width="50%" alignSelf="center" className={classes.loginArea}>
             <Box width="100%" maxWidth={450} p={3} alignSelf="center">
               <Grid container>
