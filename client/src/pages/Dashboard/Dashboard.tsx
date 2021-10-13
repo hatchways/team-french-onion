@@ -7,7 +7,7 @@ import { useSocket } from '../../context/useSocketContext';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import NavBar from '../../components/NavBar/NavBar';
-import { Typography } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 import ProfileCard from '../../components/ProfileCard/ProfileCard';
 import { mockProfiles } from '../../mocks/mockProfile';
 
@@ -43,10 +43,12 @@ export default function Dashboard(): JSX.Element {
       </Grid>
 
       {/**Currently using mock profiles, need to change to actual list of profiles from api call */}
-      <Grid container spacing={5} className={classes.listingsWrapper}>
+      <Grid container className={classes.listingsWrapper}>
         {Array.from(mockProfiles).map((_, index) => (
-          <Grid item xs={2} sm={4} md={4} key={index} className={classes.listingItem}>
-            <ProfileCard profile={mockProfiles[index]}></ProfileCard>
+          <Grid item xs={4} key={index} className={classes.listingItem}>
+            <Box py={5} display={'flex'} justifyContent={'center'}>
+              <ProfileCard profile={mockProfiles[index]}></ProfileCard>
+            </Box>
           </Grid>
         ))}
       </Grid>
