@@ -5,11 +5,9 @@ import useStyles from './useStyles';
 import { useAuth } from '../../context/useAuthContext';
 import { useSocket } from '../../context/useSocketContext';
 import { useHistory } from 'react-router-dom';
-import ChatSideBanner from '../../components/ChatSideBanner/ChatSideBanner';
 import { useEffect } from 'react';
-import logo from '../../Images/68f55f7799df6c8078a874cfe0a61a5e6e9e1687.png';
-import LogoHeader from '../../components/LogoHeader/LogoHeader';
 import NavBar from '../../components/NavBar/NavBar';
+import DashboardSearch from './DashboardSearch/DashboardSearch';
 
 export default function Dashboard(): JSX.Element {
   const classes = useStyles();
@@ -34,8 +32,9 @@ export default function Dashboard(): JSX.Element {
     <Grid container component="main" className={`${classes.root} ${classes.dashboard}`}>
       <CssBaseline />
       <NavBar loggedIn user={loggedInUser} />
-      <Grid item className={classes.drawerWrapper}>
-        <ChatSideBanner loggedInUser={loggedInUser} />
+      <Grid item className={classes.searchWrapper}>
+        <Typography className={classes.searchText}>Search for Users</Typography>
+        <DashboardSearch />
       </Grid>
     </Grid>
   );
