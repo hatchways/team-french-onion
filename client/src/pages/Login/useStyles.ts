@@ -1,4 +1,7 @@
+import { red } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
+import { findByLabelText } from '@testing-library/dom';
+import { isWhiteSpaceLike } from 'typescript';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -7,20 +10,36 @@ const useStyles = makeStyles(() => ({
       borderBottom: '1.2px solid rgba(0, 0, 0, 0.2)',
     },
   },
+  header: {
+    display: 'flex',
+    flexDirection: 'row',
+    background: 'white',
+    color: 'black',
+  },
   authWrapper: {
     display: 'flex',
-    alignItems: 'flex-start',
+    backgroundColor: 'rgba(0,0,0,0.15)',
+    /*alignItems: 'flex-end',*/
     justifyContent: 'space-between',
     flexDirection: 'column',
     minHeight: '100vh',
-    paddingTop: 23,
+    paddingTop: 0,
+  },
+  loginArea: {
+    backgroundColor: 'white',
+    boxShadow: '5px',
+    borderRadius: 10,
+    display: 'flex',
+    justifyContent: 'center',
+    paddingTop: 100,
   },
   welcome: {
-    fontSize: 26,
+    fontSize: 30,
     paddingBottom: 20,
     color: '#000000',
     fontWeight: 700,
     fontFamily: "'Open Sans'",
+    textAlign: 'center',
   },
 }));
 
