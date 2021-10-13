@@ -5,7 +5,13 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
   },
-  gridItem: {},
+  paperItem: {
+    marginTop: 35,
+    marginLeft: 65,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
 }));
 
 export default useStyles;
