@@ -117,7 +117,8 @@ exports.getAllProfiles = asyncHandler(async (req, res, next) => {
 });
 
 exports.uploadProfilePic = asyncHandler(async (req, res, next) => {
-    const { _id, file } = req.user;
+    const { file } = req.body;
+    const { _id } = req.user;
     const profile = await Profile.find({ user: _id });
 
     if (!file) {
