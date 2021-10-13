@@ -7,10 +7,8 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import { AuthProvider } from './context/useAuthContext';
 import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
 import './App.css';
-import EditProfileForm from './components/EditProfile/EditProfileForm';
 
 function App(): JSX.Element {
   return (
@@ -20,11 +18,11 @@ function App(): JSX.Element {
           <AuthProvider>
             <SocketProvider>
               <Switch>
-                <Route exact path="/editProfile" component={EditProfileForm} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
-                <Route exact path="/demo" component={Dashboard} />
-                <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+                <Route exact path="/dashboard">
+                  <Dashboard />
+                </Route>
                 <Route path="*">
                   <Redirect to="/login" />
                 </Route>
