@@ -8,6 +8,7 @@ import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import NavBar from '../../components/NavBar/NavBar';
 import DashboardSearch from './DashboardSearch/DashboardSearch';
+import { Typography } from '@material-ui/core';
 
 export default function Dashboard(): JSX.Element {
   const classes = useStyles();
