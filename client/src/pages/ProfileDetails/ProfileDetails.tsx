@@ -7,7 +7,6 @@ import { useSocket } from '../../context/useSocketContext';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import NavBar from '../../components/NavBar/NavBar';
-import { Box } from '@material-ui/core';
 
 export default function ProfileDetails(): JSX.Element {
   const classes = useStyles();
