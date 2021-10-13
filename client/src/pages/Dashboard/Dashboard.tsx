@@ -42,7 +42,10 @@ export default function Dashboard(): JSX.Element {
         <Typography className={classes.searchText}>Search for Users</Typography>
       </Grid>
 
-      {/**Currently using mock profiles, need to change to actual list of profiles from api call */}
+      {/**TODO:
+       * 1. Each Card should be a link to the userprofile route
+       * 2. Currently using mock profiles, need to change to actual list of profiles from api call
+       **/}
       <Grid container className={classes.listingsWrapper}>
         {Array.from(mockProfiles).map((_, index) => (
           <Grid item xs={4} key={index} className={classes.listingItem}>
