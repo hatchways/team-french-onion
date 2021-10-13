@@ -1,3 +1,5 @@
+
+   
 const mongoose = require("mongoose");
 
 const timeSchema = new mongoose.Schema({
@@ -41,7 +43,7 @@ const profileSchema = new mongoose.Schema({
     unique: true,
   },
   user: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
     unique: true,
