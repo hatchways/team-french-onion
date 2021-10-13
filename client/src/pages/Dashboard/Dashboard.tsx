@@ -8,7 +8,6 @@ import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import NavBar from '../../components/NavBar/NavBar';
 import { Typography } from '@material-ui/core';
-import DashboardSearch from './DashboardSearch/DashboardSearch';
 import ProfileCard from '../../components/ProfileCard/ProfileCard';
 import { mockProfiles } from '../../mocks/mockProfile';
 
@@ -41,7 +40,6 @@ export default function Dashboard(): JSX.Element {
       <NavBar loggedIn user={loggedInUser} />
       <Grid item className={classes.searchWrapper}>
         <Typography className={classes.searchText}>Search for Users</Typography>
-        <DashboardSearch />
       </Grid>
 
       {/**Currently using mock profiles, need to change to actual list of profiles from api call */}
