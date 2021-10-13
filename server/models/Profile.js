@@ -32,6 +32,9 @@ const profileSchema = new mongoose.Schema({
     type: Date,
     required: false,
   },
+  /*We may need to discard this email path in the future
+  as it is also available in the users model. We can simply 
+  populate the profile model and retrieve user email*/
   email: {
     type: String,
     required: true,
@@ -57,15 +60,15 @@ const profileSchema = new mongoose.Schema({
   },
   availability: [timeSchema],
   //we may need to store more images per profile
-  //profile pic will be saved in the photos object with 'profilePic' key
+  //profile pic will be saved in the photos array with 'profilePic' key
   photos: {
-    type: {},
+    type: [{}],
     default: "",
   },
 });
-
-profileSchema.methods.addPhoto = function (imgUrl, name) {
-  this.photos[name] = imgUrl;
+profileSchema.methods.setProflePic = function (imgUrl) {
+  this.photos.profilePic = imgUrl;
+  this.save();
 };
 
 module.exports = Profile = mongoose.model("profile", profileSchema);
