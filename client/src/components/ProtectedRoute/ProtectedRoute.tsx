@@ -16,4 +16,5 @@ const ProtectedRoute: React.FC<Props> = ({ component, ...restOfProps }) => {
 
   return isLoggedInAndValid ? <Route component={component} {...restOfProps} /> : <Redirect to="/login" />;
 };
+
 export default ProtectedRoute;
