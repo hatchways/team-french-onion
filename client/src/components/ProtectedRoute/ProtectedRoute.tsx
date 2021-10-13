@@ -1,16 +1,19 @@
 import React from 'react';
 import { useAuth } from '../../context/useAuthContext';
 import { Route, Redirect } from 'react-router-dom';
-import { ComponentType } from 'react';
 type Props = {
+  children: JSX.Element;
   path: string;
   exact: boolean;
-  component: ComponentType;
 };
-const ProtectedRoute: React.FC<Props> = ({ component, ...restOfProps }) => {
+const ProtectedRoute: React.FC<Props> = ({ children, ...restOfProps }) => {
   const { loggedInUser } = useAuth();
-  const isLoggedInAndValid = loggedInUser && loggedInUser.username && loggedInUser.email;
+  let isLoggedInAndValid = false;
 
-  return isLoggedInAndValid ? <Route component={component} {...restOfProps} /> : <Redirect to="/login" />;
+  if (loggedInUser && loggedInUser.username && loggedInUser.email) {
+    isLoggedInAndValid = true;
+  }
+
+  return <Route {...restOfProps} render={() => (isLoggedInAndValid ? children : <Redirect to="/login" />)} />;
 };
 export default ProtectedRoute;
