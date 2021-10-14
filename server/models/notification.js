@@ -42,6 +42,6 @@ notificationSchema.methods.toggleReadStatus = function () {
 };
 
 module.exports = Notification = mongoose.model(
-  "notification",
+  "Notification",
   notificationSchema
 );
