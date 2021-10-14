@@ -8,9 +8,13 @@ const useStyles = makeStyles((theme) => ({
   paperItem: {
     marginTop: 35,
     marginLeft: 65,
+    paddingTop: 10,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+  },
+  headerText: {
+    paddingTop: 20,
   },
 }));
 
