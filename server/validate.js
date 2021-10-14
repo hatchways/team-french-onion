@@ -35,68 +35,6 @@ exports.validateLogin = [
   },
 ];
 
-exports.validateProfileDetails = [
-  check("firstName", ` ${msgPrefix} first name`)
-    .exists(checkFalsyVal)
-    .trim()
-    .escape()
-    .isLength({ max: 20 }),
-  check("lastName", ` ${msgPrefix} last name`)
-    .exists(checkFalsyVal)
-    .trim()
-    .escape()
-    .isLength({ max: 20 }),
-  check("gender", ` ${msgPrefix} gender`)
-    .exists(checkFalsyVal)
-    .isIn(genderOptions),
-  check("birthday", ` ${msgPrefix} birthday format`)
-    .exists(checkFalsyVal)
-    .toDate(),
-  check("email", ` ${msgPrefix} email address`)
-    .exists(checkFalsyVal)
-    .trim()
-    .escape()
-    .isEmail(),
-  check("phoneNumber", ` ${msgPrefix} phone number`)
-    .exists(checkFalsyVal)
-    .trim()
-    .isMobilePhone(),
-  check("location", ` ${msgPrefix} location`)
-    .exists(checkFalsyVal)
-    .trim()
-    .escape()
-    .isLength({ max: 10 }),
-  check("profilePic", ` ${msgPrefix} image url`)
-    .exists(checkFalsyVal)
-    .escape()
-    .isURL(),
-  check("description", ` ${msgPrefix} description format`)
-    .exists(checkFalsyVal)
-    .escape()
-    .isLength({ max: 100 }),
-  check("availability", ` ${msgPrefix} availability format`)
-    .exists(checkFalsyVal)
-    .isArray(),
-  (req, res, next) => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty())
-      return res.status(400).json({ errors: errors.array() });
-    next();
-  },
-];
-
-exports.validateMongoId = [
-  check("_id", "Invalid profile ID").exists(checkFalsyVal).isMongoId(),
-  (req, res, next) => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty())
-      return res.status(400).json({ errors: errors.array() });
-    next();
-  },
-];
-
 exports.validateNotificationDetails = [
   check("type", ` ${msgPrefix} notification type`)
     .exists(checkFalsyVal)
