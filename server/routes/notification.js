@@ -10,12 +10,12 @@ const {
 } = require("../controllers/notification");
 
 router
-  .route("/create")
-  .post(validateNotificationDetails, createNotification);
+  .route("/")
+  .post(protect, validateNotificationDetails, createNotification);
 
-router.route("/check/:_id").post(validateMongoId, markNotificationAsRead);
+router.route("/:_id").post(protect, validateMongoId, markNotificationAsRead);
 
-router.route("/all").get(protect, getAllNotifications);
+router.route("/").get(protect, getAllNotifications);
 
 router.route("/unread").get(protect, getUnreadNotifications);
 

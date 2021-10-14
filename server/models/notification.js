@@ -2,22 +2,10 @@ const mongoose = require("mongoose");
 
 const notificationSchema = new mongoose.Schema(
   {
-    senderEmail: {
-      type: String,
-      required: true,
-      unique: true,
-      ref: "User",
-    },
-    receipientEmail: {
-      type: String,
-      required: true,
-      unique: true,
-      ref: "User",
-    },
     type: {
       type: String,
       required: true,
-      enum: ["message", "request"],
+      enum: ['Push Notification','Update','Hint','New Site Users'],
     },
     title: {
       type: String,
@@ -38,7 +26,6 @@ const notificationSchema = new mongoose.Schema(
 
 notificationSchema.methods.toggleReadStatus = function () {
   this.read = !this.read;
-  this.save();
 };
 
 module.exports = Notification = mongoose.model(

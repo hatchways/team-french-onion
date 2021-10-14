@@ -2,15 +2,13 @@ const Notification = require("../models/Notification");
 const asyncHandler = require("express-async-handler");
 
 exports.createNotification = asyncHandler(async (req, res, next) => {
-  const { senderEmail, receipientEmail, type, title, description} =
+  const {type, title, description} =
     req.body;
 
   const notification = await Notification.create({
     type,
     title,
     description,
-    receipientEmail,
-    senderEmail,
   });
 
   res.status(201).json({
@@ -21,8 +19,6 @@ exports.createNotification = asyncHandler(async (req, res, next) => {
         title: notification.title,
         description: notification.description,
         read: notification.read,
-        receipientEmail: notification.receipientEmail,
-        senderEmail: notification.senderEmail,
       },
     },
   });
@@ -37,6 +33,7 @@ exports.markNotificationAsRead = asyncHandler(async (req, res, next) => {
     throw new Error("The notification does not exist");
   }
   notification.toggleReadStatus();
+  this.save();
 
   res.status(200).json({
     success: {
@@ -52,7 +49,7 @@ exports.markNotificationAsRead = asyncHandler(async (req, res, next) => {
 exports.getAllNotifications = asyncHandler(async (req, res, next) => {
   const notifications = await Notification.find();
 
-  if (!natifications) return res.json({ msg: "No results found" });
+  if (!notifications.length) return res.json({ message: "No results found" });
 
   res.status(200).json({
     success: notifications,
@@ -62,7 +59,7 @@ exports.getAllNotifications = asyncHandler(async (req, res, next) => {
 exports.getUnreadNotifications = asyncHandler(async (req, res, next) => {
   const notifications = await Notification.find({ read: false });
 
-  if (!notification) return res.json({ msg: "No results found" });
+  if (!notifications.length) return res.json({ message: "No results found" });
 
   res.status(200).json({
     success: notifications,
