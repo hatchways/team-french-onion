@@ -31,7 +31,6 @@ export default function Profile(): JSX.Element {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <NavBar loggedIn user={loggedInUser} />
       <Grid container spacing={5}>
         <Grid item className={classes.gridItem}>
           Left side

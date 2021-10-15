@@ -5,7 +5,11 @@ import NavBar from './components/NavBar/NavBar';
 import Login from './pages/Login/Login';
 import Signup from './pages/SignUp/SignUp';
 import Dashboard from './pages/Dashboard/Dashboard';
+<<<<<<< HEAD
 import Profile from './pages/ProfileDetails/Profile';
+=======
+import ProfileDetails from './pages/ProfileDetails/ProfileDetails';
+>>>>>>> feature20
 import { AuthProvider } from './context/useAuthContext';
 import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
@@ -26,7 +30,11 @@ function App(): JSX.Element {
                 <Route exact path="/dashboard">
                   <Dashboard />
                 </Route>
+<<<<<<< HEAD
                 <Route exact path="/profile" component={Profile} />
+=======
+                <Route exact path="/profile" component={ProfileDetails} />
+>>>>>>> feature20
                 <Route path="*">
                   <Redirect to="/login" />
                 </Route>
