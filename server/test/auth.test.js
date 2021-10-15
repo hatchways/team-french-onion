@@ -20,7 +20,7 @@ const newTestUser = {
   username: "imatest"
 }
 
-let agent = request.agent(app);
+const agent = request.agent(app);
 
 describe("Tests for auth endpoints", () => {
   
