@@ -4,16 +4,16 @@ import logo from '../../../src/Images/logo.png';
 import { Link as RouterLink } from 'react-router-dom';
 import { Link as MUILink } from '@material-ui/core';
 
-interface Props {
-  loggedIn: boolean;
-}
-
-const LogoHeader = ({ loggedIn }: Props): JSX.Element => {
+const LogoHeader = (): JSX.Element => {
   const classes = useStyles();
 
   return (
     <Box className={classes.logo}>
-      <MUILink component={RouterLink} to={loggedIn ? '/dashboard' : '/login'}>
+      {/**TODO: Refactor when protected route gets merged (ex...)
+       * import ProtectedRoute from '../ProtectedRoute/ProtectedRoute
+       * <ProtectedRoute component={RouterLink} to={'/'}>
+       */}
+      <MUILink component={RouterLink} to={'/'}>
         <img width="auto" src={logo} />
       </MUILink>
     </Box>

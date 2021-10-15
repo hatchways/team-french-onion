@@ -7,14 +7,15 @@ import { User } from '../../interface/User';
 import { Link as RouterLink } from 'react-router-dom';
 import { Link as MUILink } from '@material-ui/core';
 import AuthHeader from '../AuthHeader/AuthHeader';
+import { useAuth } from '../../context/useAuthContext';
 
 interface Props {
   loggedIn: boolean;
-  user?: User;
 }
 
-const NavBar = ({ loggedIn, user }: Props): JSX.Element => {
+const NavBar = (): JSX.Element => {
   const classes = useStyles();
+  const { loggedInUser } = useAuth();
 
   const guestNav = () => {
     return (
@@ -43,7 +44,7 @@ const NavBar = ({ loggedIn, user }: Props): JSX.Element => {
           <Button className={classes.appBarButtons}>Requests</Button>
         </MUILink>
         <Box px={3}>
-          <AuthMenu loggedIn user={user} />
+          <AuthMenu />
         </Box>
       </Box>
     );
@@ -53,8 +54,8 @@ const NavBar = ({ loggedIn, user }: Props): JSX.Element => {
     <Box height="70">
       {/*Add Box parent to push other content down, can remove box to fix nav bar to top of screen*/}
       <AppBar position="sticky" className={classes.appBar}>
-        <LogoHeader loggedIn />
-        {loggedIn ? userNav() : guestNav()}
+        <LogoHeader />
+        {loggedInUser ? userNav() : guestNav()}
       </AppBar>
     </Box>
   );
