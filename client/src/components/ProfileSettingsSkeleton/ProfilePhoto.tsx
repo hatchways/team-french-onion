@@ -15,7 +15,7 @@ const ProfilePhoto = (): JSX.Element => {
   const centeralize = {
     margin: 'auto',
   };
-  console.log(contentsProperties);
+
   return (
     <Box marginX="auto" width={900}>
       <Grid container>
