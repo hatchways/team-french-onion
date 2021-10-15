@@ -2,8 +2,7 @@ const Notification = require("../models/Notification");
 const asyncHandler = require("express-async-handler");
 
 exports.createNotification = asyncHandler(async (req, res, next) => {
-  const {type, title, description} =
-    req.body;
+  const { type, title, description } = req.body;
 
   const notification = await Notification.create({
     type,
@@ -12,7 +11,7 @@ exports.createNotification = asyncHandler(async (req, res, next) => {
   });
 
   res.status(201).json({
-    success: {
+    message: {
       notification: {
         id: notification._id,
         type: notification.type,
@@ -28,15 +27,13 @@ exports.markNotificationAsRead = asyncHandler(async (req, res, next) => {
   const { _id } = req.params;
   const notification = await Notification.findById(_id);
 
-  if (!notification) {
-    res.status(404);
-    throw new Error("The notification does not exist");
-  }
+  if (!notification.length) return res.json({ message: notification });
+
   notification.toggleReadStatus();
   this.save();
 
   res.status(200).json({
-    success: {
+    message: {
       notification: {
         id: notification._id,
         description: notification.description,
@@ -49,19 +46,19 @@ exports.markNotificationAsRead = asyncHandler(async (req, res, next) => {
 exports.getAllNotifications = asyncHandler(async (req, res, next) => {
   const notifications = await Notification.find();
 
-  if (!notifications.length) return res.json({ message: "No results found" });
+  if (!notifications.length) return res.json({ message: notifications });
 
   res.status(200).json({
-    success: notifications,
+    message: notifications,
   });
 });
 
 exports.getUnreadNotifications = asyncHandler(async (req, res, next) => {
   const notifications = await Notification.find({ read: false });
 
-  if (!notifications.length) return res.json({ message: "No results found" });
+  if (!notifications.length) return res.json({ message: notifications });
 
   res.status(200).json({
-    success: notifications,
+    message: notifications,
   });
 });
