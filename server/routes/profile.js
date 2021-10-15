@@ -18,7 +18,7 @@ router
 router.route("/").get(protect, getProfile);
 
 router.route("/profiles").get(protect, getAllProfiles);
-//const router = express.Router();
-//const { createProfile } = require("../controllers/profile");
+const router = express.Router();
+const { createProfile } = require("../controllers/profile");
 
 module.exports = router;
