@@ -5,7 +5,7 @@ import { useAuth } from '../../context/useAuthContext';
 import { useSocket } from '../../context/useSocketContext';
 import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import NavBar from '../../components/NavBar/NavBar';
+import Card from '@mui/material/Card';
 import { Box, Button, Grid, Paper, Typography } from '@material-ui/core';
 import img from '../../Images/b1f0e680702e811aa8ba333cb19c0e0ea95e8e31.png';
 import TextField from '@mui/material/TextField';
@@ -39,7 +39,6 @@ export default function ProfileDetails(): JSX.Element {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <NavBar loggedIn user={loggedInUser} />
       <Grid container>
         <Grid item xs={7}>
           <Paper elevation={10} className={classes.paperItem}>
@@ -89,6 +88,9 @@ export default function ProfileDetails(): JSX.Element {
           </Paper>
         </Grid>
       </Grid>
+      <Card elevation={6} sx={{ minWidth: 245, maxWidth: 245 }}>
+        Hello
+      </Card>
     </Grid>
   );
 }

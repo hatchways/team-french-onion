@@ -14,7 +14,7 @@ const ProfileCard = ({ profile }: Props): JSX.Element => {
   const classes = useStyles();
 
   return (
-    <Card sx={{ minWidth: 245, maxWidth: 245, border: 2 }}>
+    <Card elevation={8} sx={{ minWidth: 245, maxWidth: 245 }}>
       <Box className={classes.pictureWrapper}>
         <img className={classes.picture} src={picture} />
       </Box>
