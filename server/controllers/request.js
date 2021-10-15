@@ -1,6 +1,6 @@
 const Request = require("../models/Request");
 const asyncHandler = require("express-async-handler");
-const stripe = require("stripe")(process.env.STRIPE_SECRET);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // @route GET /requests
 // @desc Search for request of especific userId
@@ -18,7 +18,7 @@ exports.getRequests = asyncHandler(async (req, res, next) => {
 // @access Private
 
 exports.postRequest = asyncHandler(async (req, res, next) => {
-  const userId = req.user.id;
+  const userId = req.body.id;
   const { sitterId, start, end, status, paid } = req.body;
 
   const newRequest = await Request.create({
@@ -61,34 +61,48 @@ exports.updateRequest = asyncHandler(async (req, res, next) => {
   }
 });
 
-// @route PATH /requests/:requestId/pay
+// @route PATCH /requests/:requestId/pay
 // @desc Update pay status
 // @access Private
 
 exports.payRequest = asyncHandler(async (req, res, next) => {
   const requestId = req.params.requestId;
-  const request = await Request.findOne({ _id: requestId });
+  const request = await Request.findById(requestId);
   const { items } = req.body;
-
   const todayDate = new Date();
 
-  if (todayDate > request.end) {
+  const calculateOrderAmount = (items) => {
+    /*  Calculate the order total on the server to prevent
+     people from directly manipulating the amount on the client
+    TODO: Add something like following code to get line items 
+    from frontend once integrated
+
+    Object.entries(items).forEach((entry) => {
+      const [key, value] = entry;
+    });*/
+    return 1400;
+  };
+
+  if (todayDate > request.end && !request.paid) {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: calculateOrderAmount(items),
       currency: "cad",
     });
+
+    const updatedRequest = await Request.findByIdAndUpdate(
+      requestId,
+      { $set: { paid: true } },
+      { new: true }
+    );
+
     res.send({
+      success: updatedRequest,
       clientSecret: paymentIntent.client_secret,
     });
   } else {
     res.status(400);
-    throw new Error("Current date has to be after end date of request to pay.");
+    throw new Error(
+      "Current date has to be after end date of request to pay and/or request has to be unpaid."
+    );
   }
-
-  const calculateOrderAmount = (items) => {
-    // Replace this constant with a calculation of the order's amount
-    // Calculate the order total on the server to prevent
-    // people from directly manipulating the amount on the client
-    return 1400;
-  };
 });
