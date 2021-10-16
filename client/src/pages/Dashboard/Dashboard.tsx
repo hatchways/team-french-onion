@@ -6,12 +6,6 @@ import { useAuth } from '../../context/useAuthContext';
 import { useSocket } from '../../context/useSocketContext';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
-<<<<<<< HEAD
-import NavBar from '../../components/NavBar/NavBar';
-import DashboardSearch from './DashboardSearch/DashboardSearch';
-import { Typography } from '@material-ui/core';
-=======
->>>>>>> main
 
 export default function Dashboard(): JSX.Element {
   const classes = useStyles();
@@ -35,7 +29,6 @@ export default function Dashboard(): JSX.Element {
   return (
     <Grid container component="main" className={`${classes.root} ${classes.dashboard}`}>
       <CssBaseline />
-
     </Grid>
   );
 }
