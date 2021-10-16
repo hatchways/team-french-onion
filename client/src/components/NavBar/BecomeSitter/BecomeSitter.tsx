@@ -1,7 +1,4 @@
-import Box from '@material-ui/core/Box';
 import useStyles from './useStyles';
-
-import * as React from 'react';
 import { ChangeEvent, Fragment, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -13,6 +10,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import { Checkbox, FormGroup, TextField, Typography } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
 
 const BecomeSitter = (): JSX.Element => {
   const classes = useStyles();
@@ -29,7 +27,6 @@ const BecomeSitter = (): JSX.Element => {
 
   const [open, setOpen] = useState(false);
   const [isSitter, setIsSitter] = useState(false);
-  const { mon, tue, wed, thurs, fri, sat, sun } = state;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -77,41 +74,17 @@ const BecomeSitter = (): JSX.Element => {
                 <Typography className={classes.labels}>{isSitter ? `I'M AVAILABLE` : `I'M NOT AVAILABLE`}</Typography>
                 <Switch checked={isSitter} onChange={handleSitter} />
               </Box>
-              <Box display={'flex'} mb={2} alignItems={'center'} border={1}>
+              <Box display={'flex'} mb={2} alignItems={'center'}>
                 <Typography className={classes.labels}>AVAILABILITY:</Typography>
                 <FormGroup>
-                  <Box border={1}>
-                    {/** {Object.keys(state).map((item) => {
-                  alert(item);
-                })}*/}
-                    <FormControlLabel
-                      control={<Checkbox checked={mon} disabled={!isSitter} onChange={handleChange} name="mon" />}
-                      label="mon"
-                    />
-                    <FormControlLabel
-                      control={<Checkbox checked={tue} disabled={!isSitter} onChange={handleChange} name="tue" />}
-                      label="tue"
-                    />
-                    <FormControlLabel
-                      control={<Checkbox checked={wed} disabled={!isSitter} onChange={handleChange} name="wed" />}
-                      label="wed"
-                    />
-                    <FormControlLabel
-                      control={<Checkbox checked={thurs} disabled={!isSitter} onChange={handleChange} name="thurs" />}
-                      label="thurs"
-                    />
-                    <FormControlLabel
-                      control={<Checkbox checked={fri} disabled={!isSitter} onChange={handleChange} name="fri" />}
-                      label="fri"
-                    />
-                    <FormControlLabel
-                      control={<Checkbox checked={sat} disabled={!isSitter} onChange={handleChange} name="sat" />}
-                      label="sat"
-                    />
-                    <FormControlLabel
-                      control={<Checkbox checked={sun} disabled={!isSitter} onChange={handleChange} name="sun" />}
-                      label="sun"
-                    />
+                  <Box>
+                    {Object.entries(state).map(([key, value], index) => (
+                      <FormControlLabel
+                        key={index}
+                        control={<Checkbox checked={value} disabled={!isSitter} onChange={handleChange} name={key} />}
+                        label={key}
+                      />
+                    ))}
                   </Box>
                 </FormGroup>
               </Box>
