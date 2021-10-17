@@ -19,7 +19,6 @@ const useStyles = makeStyles(() => ({
   authWrapper: {
     display: 'flex',
     backgroundColor: 'rgba(0,0,0,0.15)',
-    /*alignItems: 'flex-end',*/
     justifyContent: 'space-between',
     flexDirection: 'column',
     minHeight: '100vh',

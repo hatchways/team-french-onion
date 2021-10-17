@@ -9,7 +9,6 @@ import login from '../../helpers/APICalls/login';
 import LoginForm from './LoginForm/LoginForm';
 import { useAuth } from '../../context/useAuthContext';
 import { useSnackBar } from '../../context/useSnackbarContext';
-import NavBar from '../../components/NavBar/NavBar';
 
 export default function Login(): JSX.Element {
   const classes = useStyles();
@@ -40,8 +39,7 @@ export default function Login(): JSX.Element {
       <CssBaseline />
       <Grid item xs={12} sm={12} md={12} elevation={6} component={Paper} square>
         <Box className={classes.authWrapper}>
-          <NavBar loggedIn={false} user={undefined} />
-          <Box width="50%" alignSelf="center" className={classes.loginArea}>
+          <Box width="50%" alignSelf="center" mt={10} className={classes.loginArea}>
             <Box width="100%" maxWidth={450} p={3} alignSelf="center">
               <Grid container>
                 <Grid item xs>
