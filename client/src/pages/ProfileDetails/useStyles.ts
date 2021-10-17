@@ -4,6 +4,13 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
+    paddingBottom: 100,
+  },
+  image: {
+    minWidth: 500,
+    maxWidth: 500,
+    maxHeight: 500,
+    minHeight: 500,
   },
   paperItem: {
     marginTop: 35,
@@ -15,6 +22,24 @@ const useStyles = makeStyles((theme) => ({
   },
   headerText: {
     paddingTop: 20,
+  },
+  arrowRight: {
+    position: 'absolute',
+    fontSize: 50,
+    right: 0,
+    top: 200,
+    '&:hover': {
+      backgroundColor: 'rgb(0,0,0,0.2)',
+    },
+  },
+  arrowLeft: {
+    position: 'absolute',
+    fontSize: 50,
+    left: 0,
+    top: 200,
+    '&:hover': {
+      backgroundColor: 'rgb(0,0,0,0.2)',
+    },
   },
 }));
 
