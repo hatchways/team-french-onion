@@ -5,15 +5,15 @@ import useStyles from './useStyles';
 import { useAuth } from '../../context/useAuthContext';
 import { useSocket } from '../../context/useSocketContext';
 import { useHistory } from 'react-router-dom';
-import { useEffect } from 'react';
-import NavBar from '../../components/NavBar/NavBar';
+import { useEffect, useState } from 'react';
 import { Box, Typography } from '@material-ui/core';
 import ProfileCard from '../../components/ProfileCard/ProfileCard';
-import { mockProfiles } from '../../mocks/mockProfile';
+import getAllProfiles from '../../helpers/APICalls/getAllProfiles';
+import { Profile } from '../../interface/Profile';
 
 export default function Dashboard(): JSX.Element {
   const classes = useStyles();
-
+  const [profiles, setProfiles] = useState<Profile[]>([]);
   const { loggedInUser } = useAuth();
   const { initSocket } = useSocket();
 
@@ -25,9 +25,14 @@ export default function Dashboard(): JSX.Element {
 
   useEffect(() => {
     initSocket();
+
+    getAllProfiles().then((data) => {
+      setProfiles(data.profiles);
+    });
   }, [initSocket]);
 
   if (loggedInUser === undefined) return <CircularProgress />;
+
   if (!loggedInUser) {
     history.push('/login');
     // loading for a split seconds until history.push works
@@ -44,12 +49,12 @@ export default function Dashboard(): JSX.Element {
       {/**TODO:
        * 1. Each Card should be a link to the userprofile route
        * 2. Currently using mock profiles, need to change to actual list of profiles from api call
-       **/}
+       ***/}
       <Grid container className={classes.listingsWrapper}>
-        {Array.from(mockProfiles).map((_, index) => (
+        {Array.from(profiles).map((_, index) => (
           <Grid item xs={4} key={index} className={classes.listingItem}>
-            <Box py={5} display={'flex'} justifyContent={'center'}>
-              {/** <ProfileCard profile={mockProfiles[index]}></ProfileCard>*/}
+            <Box py={2} border={1} display={'flex'} justifyContent={'center'}>
+              <ProfileCard profile={profiles[index]}></ProfileCard>
             </Box>
           </Grid>
         ))}
