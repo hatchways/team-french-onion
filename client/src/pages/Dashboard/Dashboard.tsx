@@ -6,11 +6,11 @@ import { useAuth } from '../../context/useAuthContext';
 import { useSocket } from '../../context/useSocketContext';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
-import NavBar from '../../components/NavBar/NavBar';
-import { Typography } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 import DashboardSearch from './DashboardSearch/DashboardSearch';
 import ProfileCard from '../../components/ProfileCard/ProfileCard';
 import { mockProfiles } from '../../mocks/mockProfile';
+import { Link } from 'react-router-dom';
 
 export default function Dashboard(): JSX.Element {
   const classes = useStyles();
@@ -40,6 +40,9 @@ export default function Dashboard(): JSX.Element {
       <CssBaseline />
       <Grid item className={classes.searchWrapper}>
         <Typography className={classes.searchText}>Search for Users</Typography>
+        <Button component={Link} to="/paymentTemp">
+          Checkout
+        </Button>
         <DashboardSearch />
       </Grid>
 
