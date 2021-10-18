@@ -3,15 +3,13 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import useStyles from './useStyles';
 import { useAuth } from '../../context/useAuthContext';
-import { useSocket } from '../../context/useSocketContext';
 import { useHistory } from 'react-router-dom';
-import { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { Box, Typography } from '@material-ui/core';
 import ProfileCard from '../../components/ProfileCard/ProfileCard';
 import getAllProfiles from '../../helpers/APICalls/getAllProfiles';
 import { Profile } from '../../interface/Profile';
 import DashboardSearch from './DashboardSearch/DashboardSearch';
-import { typography } from '@mui/system';
 
 export default function Dashboard(): JSX.Element {
   const classes = useStyles();
@@ -21,8 +19,13 @@ export default function Dashboard(): JSX.Element {
   const [endValue, setEndValue] = useState<Date | null>(null);
 
   const { loggedInUser } = useAuth();
-  const { initSocket } = useSocket();
   const history = useHistory();
+
+  useEffect(() => {
+    getAllProfiles(searchValue, startValue, endValue).then((data) => {
+      setProfiles(data.profiles);
+    });
+  }, [searchValue, startValue, endValue]);
 
   const handleStartDateChange = (newValue: Date | null) => {
     setStartValue(newValue);
@@ -34,18 +37,6 @@ export default function Dashboard(): JSX.Element {
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
-  };
-
-  const handleKeyPress = (event: KeyboardEvent<HTMLDivElement>) => {
-    // TODO: Temp placeholder, contains values needed from search to be passed on.
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      getAllProfiles(searchValue, startValue, endValue).then((data) => {
-        console.log(data);
-        console.log(data.profiles);
-        setProfiles(data.profiles);
-      });
-    }
   };
 
   if (loggedInUser === undefined) return <CircularProgress />;
@@ -62,7 +53,6 @@ export default function Dashboard(): JSX.Element {
       <Grid item className={classes.searchWrapper}>
         <Typography className={classes.searchText}>Search for Users</Typography>
         <DashboardSearch
-          handleKeyPress={handleKeyPress}
           handleSearchChange={handleSearchChange}
           handleStartDateChange={handleStartDateChange}
           handleEndDateChange={handleEndDateChange}

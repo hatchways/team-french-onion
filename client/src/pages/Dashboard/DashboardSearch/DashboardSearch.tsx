@@ -9,7 +9,6 @@ import { IconButton, Typography } from '@material-ui/core';
 import { SearchOutlined } from '@material-ui/icons';
 
 interface Props {
-  handleKeyPress: (event: KeyboardEvent<HTMLDivElement>) => void;
   handleSearchChange: (event: ChangeEvent<HTMLInputElement>) => void;
   handleStartDateChange: (newValue: Date | null) => void;
   handleEndDateChange: (newValue: Date | null) => void;
@@ -18,7 +17,6 @@ interface Props {
 }
 
 export default function DashboardSearch({
-  handleKeyPress,
   handleSearchChange,
   handleStartDateChange,
   handleEndDateChange,
@@ -35,7 +33,6 @@ export default function DashboardSearch({
           id="city"
           label="Search by city"
           variant="outlined"
-          onKeyPress={handleKeyPress}
           onChange={handleSearchChange}
           InputProps={{
             startAdornment: (

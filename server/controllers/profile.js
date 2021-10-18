@@ -101,14 +101,14 @@ exports.getAllProfiles = asyncHandler(async (req, res, next) => {
   const { search, start, end } = req.query;
 
   if (search != "" || start != "null" || end != "null") {
-    const profilesMatch = await Profile.find({
+    const profiles = await Profile.find({
       location: { $regex: search, $options: "i" },
       isSitter: true,
     });
 
     //TODO: Need to check dates to be valid
     res.status(200).json({
-      profilesMatch,
+      profiles,
     });
     return;
   }
