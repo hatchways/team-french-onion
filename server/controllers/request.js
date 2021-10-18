@@ -71,8 +71,16 @@ exports.payRequest = asyncHandler(async (req, res) => {
   const { items } = req.body;
   const todayDate = new Date();
 
-  //TODO: Need to add cutomerprofile and payments to allow saving cc
-  // but below should work for entering cc every time to pay
+  /*TODO: 
+    Eg.
+    const customer = await stripe.customers.create();
+    const ephemeralKey = await stripe.ephemeralKeys.create(
+      {customer: customer.id},
+      {apiVersion: '2020-08-27'
+    );
+    Need to add new customer and methods to save cc
+    but below should work for entering cc every time to pay
+  */
 
   const calculateOrderAmount = (items) => {
     /* 
