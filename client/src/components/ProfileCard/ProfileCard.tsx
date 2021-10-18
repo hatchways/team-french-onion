@@ -13,7 +13,7 @@ interface Props {
 
 const ProfileCard = ({ profile }: Props): JSX.Element => {
   const classes = useStyles();
-  const { _id: id, firstName, lastName, description, location } = profile;
+  const { _id: id, firstName, lastName, description, location, hourlyRate } = profile;
 
   return (
     <Card
@@ -36,7 +36,7 @@ const ProfileCard = ({ profile }: Props): JSX.Element => {
           </Box>
           <Box display={'flex'} p={1} mt={5} justifyContent={'space-evenly'} className={classes.infoWrapper}>
             <Typography>{location}</Typography>
-            <Typography>{`30/hr`}</Typography>
+            <Typography>{`${hourlyRate}/hr`}</Typography>
           </Box>
         </Box>
       </CardContent>
