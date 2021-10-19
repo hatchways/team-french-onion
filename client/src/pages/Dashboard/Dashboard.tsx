@@ -6,7 +6,6 @@ import { useAuth } from '../../context/useAuthContext';
 import { useSocket } from '../../context/useSocketContext';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
-import NavBar from '../../components/NavBar/NavBar';
 import { Box, Typography } from '@material-ui/core';
 import ProfileCard from '../../components/ProfileCard/ProfileCard';
 import { mockProfiles } from '../../mocks/mockProfile';
@@ -37,7 +36,6 @@ export default function Dashboard(): JSX.Element {
   return (
     <Grid container component="main" className={`${classes.root} ${classes.dashboard}`}>
       <CssBaseline />
-      <NavBar loggedIn user={loggedInUser} />
       <Grid item className={classes.searchWrapper}>
         <Typography className={classes.searchText}>Search for Users</Typography>
       </Grid>

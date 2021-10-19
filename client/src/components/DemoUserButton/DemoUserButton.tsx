@@ -5,11 +5,11 @@ import { useAuth } from '../../context/useAuthContext';
 import { useSnackBar } from '../../context/useSnackbarContext';
 import login from '../../helpers/APICalls/login';
 import { demoUser } from '../../mocks/mockUser';
-import { useState } from 'react';
+import { useFormikContext } from 'formik';
 
 const DemoUserButton = (): JSX.Element => {
   const classes = useStyles();
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const { isSubmitting } = useFormikContext();
   const { updateSnackBarMessage } = useSnackBar();
   const { updateLoginContext } = useAuth();
   const { email, password } = demoUser;
