@@ -37,10 +37,10 @@ const BecomeSitter = (): JSX.Element => {
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setState({
-      ...state,
+    setState((prevState) => ({
+      ...prevState,
       [event.target.name]: event.target.checked,
-    });
+    }));
   };
 
   const handleSitter = (event: ChangeEvent<HTMLInputElement>) => {
