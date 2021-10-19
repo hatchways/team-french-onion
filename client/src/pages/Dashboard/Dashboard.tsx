@@ -60,7 +60,6 @@ export default function Dashboard(): JSX.Element {
           endValue={endValue}
         />
       </Grid>
-
       {/**TODO:
        *
        * Currently using mock profiles, need to change to actual list of profiles from api call

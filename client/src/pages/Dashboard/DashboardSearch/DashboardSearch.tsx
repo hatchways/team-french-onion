@@ -27,7 +27,7 @@ export default function DashboardSearch({
   const initialDate = new Date();
 
   return (
-    <Grid container justify={'center'} className={classes.root}>
+    <Grid container justify={'center'}>
       <Grid item>
         <TextField
           id="city"
