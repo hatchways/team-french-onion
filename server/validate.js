@@ -113,16 +113,9 @@ exports.validateNotificationDetails = [
     .trim()
     .escape()
     .isLength({ max: 100 }),
-  check("receipientEmail", ` ${msgPrefix} receipient email`)
+  check("read", ` ${msgPrefix} read status`)
     .exists(checkFalsyVal)
-    .trim()
-    .escape()
-    .isEmail(),
-  check("senderEmail", ` ${msgPrefix} sender email`)
-    .exists(checkFalsyVal)
-    .trim()
-    .escape()
-    .isEmail(),
+    .isBoolean(),
   (req, res, next) => {
     const errors = validationResult(req);
 
