@@ -7,13 +7,28 @@ const useStyles = makeStyles(() => ({
       borderBottom: '1.2px solid rgba(0, 0, 0, 0.2)',
     },
   },
+  header: {
+    display: 'flex',
+    flexDirection: 'row',
+    background: 'white',
+    color: 'black',
+  },
   authWrapper: {
     display: 'flex',
-    alignItems: 'flex-start',
+    backgroundColor: 'rgba(0,0,0,0.15)',
+    /*alignItems: 'flex-start',*/
     justifyContent: 'space-between',
     flexDirection: 'column',
     minHeight: '100vh',
-    paddingTop: 23,
+    paddingTop: 0,
+  },
+  loginArea: {
+    backgroundColor: 'white',
+    boxShadow: '5px',
+    borderRadius: 10,
+    display: 'flex',
+    justifyContent: 'center',
+    paddingTop: 100,
   },
   welcome: {
     fontSize: 26,
@@ -21,6 +36,7 @@ const useStyles = makeStyles(() => ({
     color: '#000000',
     fontWeight: 700,
     fontFamily: "'Open Sans'",
+    textAlign: 'center',
   },
 }));
 

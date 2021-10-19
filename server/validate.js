@@ -124,5 +124,3 @@ exports.validateNotificationDetails = [
     next();
   },
 ];
-
-
