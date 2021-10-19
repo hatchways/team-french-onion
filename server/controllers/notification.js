@@ -44,7 +44,8 @@ exports.markNotificationAsRead = asyncHandler(async (req, res, next) => {
 });
 
 exports.getAllNotifications = asyncHandler(async (req, res, next) => {
-  const notifications = await Notification.find();
+  const { _id } = req.user;
+  const notifications = await Notification.find({user: _id});
 
   if (!notifications.length) return res.json({ message: notifications });
 
