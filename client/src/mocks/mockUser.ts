@@ -18,6 +18,11 @@ const mockOtherUser3: User = {
   email: 'mockTestUser3@gmail.com',
 };
 
+const demoUser = {
+  email: 'demo@email.com',
+  password: 'demopassword',
+};
+
 const mockOtherUsers: User[] = [mockOtherUser1, mockOtherUser2, mockOtherUser3];
 
-export { mockLoggedInUser, mockOtherUsers };
+export { mockLoggedInUser, mockOtherUsers, demoUser };
