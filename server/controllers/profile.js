@@ -100,7 +100,7 @@ exports.getProfile = asyncHandler(async (req, res, next) => {
 exports.getAllProfiles = asyncHandler(async (req, res, next) => {
   const { search, start, end } = req.query;
 
-  if (search != "" || start != "null" || end != "null") {
+  if (!search || !start || !end) {
     const profiles = await Profile.find({
       location: { $regex: search, $options: "i" },
       isSitter: true,
@@ -114,10 +114,6 @@ exports.getAllProfiles = asyncHandler(async (req, res, next) => {
   }
 
   const profiles = await Profile.find();
-  if (!profiles) {
-    res.status(500);
-    throw new Error("0 results");
-  }
 
   res.status(200).json({
     profiles,

@@ -49,7 +49,6 @@ const BecomeSitter = (): JSX.Element => {
 
   const handleSubmit = () => {
     //TODO: Placeholder for editing profile info to switch between sitter and not a sitter
-    console.log('hello');
     setOpen(false);
   };
 
