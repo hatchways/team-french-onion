@@ -62,36 +62,32 @@ const formValidation = yup.object().shape({
 
 const Availability = (): JSX.Element => {
   const [initialFormState, setInitialFormState] = useState<formState>({
-    slot1a: '11:23',
-    slot2a: '02:13',
-    slot3a: '11:23',
-    slot4a: '21:08',
-    slot5a: '14:45',
-    slot6a: '17:02',
-    slot7a: '05:39',
-    slot8a: '19:22',
-    slot1b: '04:18',
-    slot2b: '12:04',
-    slot3b: '01:56',
-    slot4b: '23:11',
-    slot5b: '12:08',
-    slot6b: '17:34',
-    slot7b: '22:05',
-    slot8b: '14:07',
-    slot1c: 'Thursday',
-    slot2c: 'Friday',
-    slot3c: 'Monday',
-    slot4c: 'Sunday',
-    slot5c: 'Tuesday',
+    slot1a: '01:00',
+    slot2a: '14:00',
+    slot3a: '12:30',
+    slot4a: '21:00',
+    slot5a: '09:30',
+    slot6a: '17:00',
+    slot7a: '05:30',
+    slot8a: '11:00',
+    slot1b: '04:30',
+    slot2b: '19:30',
+    slot3b: '02:00',
+    slot4b: '23:30',
+    slot5b: '12:00',
+    slot6b: '20:30',
+    slot7b: '11:00',
+    slot8b: '14:00',
+    slot1c: 'Monday',
+    slot2c: 'Monday',
+    slot3c: 'Tuesday',
+    slot4c: 'Wednesday',
+    slot5c: 'Thursday',
     slot6c: 'Thursday',
-    slot7c: 'Wednesday',
-    slot8c: 'Monday',
+    slot7c: 'Friday',
+    slot8c: 'Sunday',
   });
-  const { formContainer, formCaption, padding, formInput, submitBtn } = useStyles();
-
-  const centeralize = {
-    margin: 'auto',
-  };
+  const { formContainer, formCaption, padding, submitBtn } = useStyles();
 
   return (
     <Container className={formContainer}>

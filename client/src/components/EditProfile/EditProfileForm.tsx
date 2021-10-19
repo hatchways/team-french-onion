@@ -16,16 +16,7 @@ interface formState {
   location: string;
   description: string;
 }
-const user = {
-  firstName: 'Rihanna',
-  lastName: 'Robyn',
-  gender: 'FEMALE',
-  birthday: '1991-03-01',
-  email: 'riro@gmail.com',
-  phoneNumber: '22384893879',
-  location: 'Bridgetown, Barbados',
-  description: 'I have been a taking care of pets ever since I was a child. I have great passion for what i do!',
-};
+
 const txtFieldsProps = [
   { title: 'First name', fieldName: 'firstName', placeholder: 'John' },
   { title: 'Last name', fieldName: 'lastName', placeholder: 'Doe' },
@@ -81,20 +72,22 @@ const EditProfileForm = (): JSX.Element => {
         const { profile } = data;
         console.log(profile);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch(() => ({
+        error: { message: 'Unable to connect to server. Please try again' },
+      }));
   }, []);
 
   useEffect(() => {
-    setInitialFormState(user);
-    /*fetch('localhost:3001/profile')
+    fetch('localhost:3001/profile')
       .then((res) => res.json())
       .then((data) => {
-        const {user} = data;
+        const { user } = data;
         setInitialFormState(user);
+        return { sucess: { message: data.message } };
       })
-      .catch((err) => console.log(err));*/
+      .catch(() => ({
+        error: { message: 'Unable to connect to server. Please try again' },
+      }));
   }, [initialFormState]);
   return (
     <Container className={formContainer}>

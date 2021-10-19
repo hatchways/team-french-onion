@@ -2,7 +2,6 @@ import { Formik, Form } from 'formik';
 import { Container, Grid, Typography, Paper, Box, Input, Button, Avatar } from '@material-ui/core';
 import useStyles from './useStyles';
 import { useEffect, useState, useCallback } from 'react';
-import { useAuth } from '../../context/useAuthContext';
 
 interface formState {
   image: File | undefined;
@@ -30,10 +29,11 @@ const ProfilePhoto = (): JSX.Element => {
       .then((data) => {
         const { profilePic } = data.profile.photos;
         setImgUrl(profilePic);
+        return { sucess: { message: data.message } };
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch(() => ({
+        error: { message: 'Unable to connect to server. Please try again' },
+      }));
   }, []);
 
   const onChangeHandler = useCallback(
@@ -51,12 +51,11 @@ const ProfilePhoto = (): JSX.Element => {
         .then((data) => {
           setToCurrentProfilePic();
           signalImgUrlUpdate(!imgUrlUpdateIndicator);
-          alert(data.message);
+          return { sucess: { message: data.message } };
         })
-        .catch((err) => {
-          alert('An error occured while uploading, please try again');
-          console.log(err);
-        });
+        .catch(() => ({
+          error: { message: 'Unable to connect to server. Please try again' },
+        }));
     },
     [imgUrlUpdateIndicator, setToCurrentProfilePic],
   );
