@@ -36,7 +36,7 @@ export default function DashboardSearch(): JSX.Element {
   };
 
   return (
-    <Grid container justify={'center'} className={classes.root}>
+    <Grid container justify={'center'}>
       <Grid item>
         <TextField
           id="city"
