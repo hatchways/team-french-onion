@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 50,
   },
   listingItem: {
-    border: '1px solid blue',
     textAlign: 'center',
     alignContent: 'center',
     flexWrap: 'wrap',

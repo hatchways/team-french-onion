@@ -4,7 +4,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import picture from '../../Images/d9fc84a0d1d545d77e78aaad39c20c11d3355074.png';
-import { Profile } from '../../interface/User';
+import { Profile } from '../../interface/Profile';
 
 interface Props {
   profile: Profile;
@@ -27,7 +27,7 @@ const ProfileCard = ({ profile }: Props): JSX.Element => {
         </Typography>
       </CardContent>
       <Box className={classes.infoWrapper}>
-        <Typography>Toronto</Typography>
+        <Typography>{profile.location}</Typography>
         <Typography>$14/hr</Typography>
       </Box>
     </Card>

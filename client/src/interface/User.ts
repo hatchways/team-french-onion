@@ -8,6 +8,7 @@ export interface Profile {
   lastName: string;
   email: string;
   description: string;
+  location: string;
 }
 
 export interface SearchUsersApiData {
