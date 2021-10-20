@@ -52,9 +52,6 @@ export default function Dashboard(): JSX.Element {
       <CssBaseline />
       <Grid item className={classes.searchWrapper}>
         <Typography className={classes.searchText}>Search for Users</Typography>
-        <form action="/requests/requestId/pay" method="POST">
-          <button type="submit">Checkout</button>
-        </form>
         {/**
         <Button component={Link} to="/paymentTemp">
           Checkout
@@ -67,7 +64,6 @@ export default function Dashboard(): JSX.Element {
           endValue={endValue}
         />
       </Grid>
-
       {/**TODO:
        *
        * Currently using mock profiles, need to change to actual list of profiles from api call
