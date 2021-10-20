@@ -53,7 +53,7 @@ export default function Dashboard(): JSX.Element {
       <Grid item className={classes.searchWrapper}>
         <Typography className={classes.searchText}>Search for Users</Typography>
         {/**
-        <Button component={Link} to="/paymentTemp">
+        <Button component={Link} to="/stripePayment">
           Checkout
         </Button> */}
         <DashboardSearch

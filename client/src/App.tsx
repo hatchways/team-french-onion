@@ -30,10 +30,10 @@ function App(): JSX.Element {
                 <Route exact path="/dashboard">
                   <Dashboard />
                 </Route>
+                <Route path="/profile/*" component={ProfileDetails} />
                 <Elements stripe={stripePromise}>
                   <Route exact path="/paymentTemp" component={Payment} />
                 </Elements>
-                <Route path="/profile/*" component={ProfileDetails} />
                 <Route path="*">
                   <Redirect to="/login" />
                 </Route>

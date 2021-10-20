@@ -26,3 +26,8 @@ export interface AllProfilesApiData {
   profiles: Profile[];
   error?: { message: string };
 }
+
+export interface GetProfileApiPost {
+  error?: { message: string };
+  success?: { success: string };
+}

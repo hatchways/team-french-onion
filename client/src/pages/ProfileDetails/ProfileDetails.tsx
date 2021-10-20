@@ -11,6 +11,7 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import { LocalizationProvider, DateTimePicker } from '@mui/lab';
 import { mockProfile1 } from '../../mocks/mockProfile';
 import { ArrowRight, ArrowLeft } from '@material-ui/icons';
+import createRequest from '../../helpers/APICalls/createRequest';
 
 export default function ProfileDetails(): JSX.Element {
   const classes = useStyles();

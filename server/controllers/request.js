@@ -19,15 +19,13 @@ exports.getRequests = asyncHandler(async (req, res, next) => {
 
 exports.postRequest = asyncHandler(async (req, res, next) => {
   const userId = req.body.id;
-  const { sitterId, start, end, status, paid } = req.body;
+  const { sitterId, start, end } = req.body;
 
   const newRequest = await Request.create({
     userId,
     sitterId,
     start,
     end,
-    status,
-    paid,
   });
 
   res.status(201).json({

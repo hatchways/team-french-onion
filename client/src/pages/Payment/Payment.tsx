@@ -43,12 +43,6 @@ export default function Payment(): JSX.Element {
     return <CircularProgress />;
   }
 
-  /**
-   * 1. Find request by id
-   * 2. Set items to checkout
-   * 3. checkout card
-   */
-
   return (
     <Card className={classes.root}>
       <CardContent>
