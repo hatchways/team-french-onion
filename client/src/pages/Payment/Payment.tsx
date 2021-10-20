@@ -4,7 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import useStyles from './useStyles';
 import { useAuth } from '../../context/useAuthContext';
 import { useHistory } from 'react-router-dom';
-import { Card, TextField, Typography } from '@material-ui/core';
+import { Card, Typography } from '@material-ui/core';
 import { Box } from '@mui/system';
 import { CardContent } from '@mui/material';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';

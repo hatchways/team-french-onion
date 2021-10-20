@@ -40,9 +40,14 @@ export default function Dashboard(): JSX.Element {
       <CssBaseline />
       <Grid item className={classes.searchWrapper}>
         <Typography className={classes.searchText}>Search for Users</Typography>
+        <form action="/requests/requestId/pay" method="POST">
+          <button type="submit">Checkout</button>
+        </form>
+        {/**
         <Button component={Link} to="/paymentTemp">
           Checkout
-        </Button>
+        </Button> */}
+
         <DashboardSearch />
       </Grid>
 

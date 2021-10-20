@@ -71,15 +71,34 @@ exports.payRequest = asyncHandler(async (req, res, next) => {
   const { items } = req.body;
   const todayDate = new Date();
 
-  const calculateOrderAmount = (items) => {
-    /*  Calculate the order total on the server to prevent
-     people from directly manipulating the amount on the client
-    TODO: Add something like following code to get line items 
-    from frontend once integrated
+  /*
+  const YOUR_DOMAIN = "http://localhost:3000";
 
-    Object.entries(items).forEach((entry) => {
-      const [key, value] = entry;
-    });*/
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        // TODO: replace this with the `price` of the product you want to sell
+        price: "{{PRICE_ID}}",
+        quantity: 1,
+      },
+    ],
+
+    payment_method_types: ["card", "acss_debit"],
+    mode: "payment",
+    success_url: `${YOUR_DOMAIN}?success=true`,
+    cancel_url: `${YOUR_DOMAIN}?canceled=true`,
+  });
+
+  res.redirect(303, session.url);*/
+
+  const calculateOrderAmount = (items) => {
+    // Calculate the order total on the server to prevent
+    // people from directly manipulating the amount on the client
+    // TODO: Add something like following code to get line items
+    //from frontend once integrated
+    //Object.entries(items).forEach((entry) => {
+    //  const [key, value] = entry;
+    //});
     return 1400;
   };
 

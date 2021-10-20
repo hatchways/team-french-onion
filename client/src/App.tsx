@@ -10,6 +10,9 @@ import Payment from './pages/Payment/Payment';
 import { AuthProvider } from './context/useAuthContext';
 import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+const stripePromise = loadStripe('STRIPE_PUBLISHABLE_API_KEY');
 
 import './App.css';
 
@@ -28,7 +31,9 @@ function App(): JSX.Element {
                   <Dashboard />
                 </Route>
                 <Route exact path="/profile" component={ProfileDetails} />
-                <Route exact path="/paymentTemp" component={Payment} />
+                <Elements stripe={stripePromise}>
+                  <Route exact path="/paymentTemp" component={Payment} />
+                </Elements>
                 <Route path="*">
                   <Redirect to="/login" />
                 </Route>
