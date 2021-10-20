@@ -37,10 +37,10 @@ const BecomeSitter = (): JSX.Element => {
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setState({
-      ...state,
+    setState((prevState) => ({
+      ...prevState,
       [event.target.name]: event.target.checked,
-    });
+    }));
   };
 
   const handleSitter = (event: ChangeEvent<HTMLInputElement>) => {
@@ -49,7 +49,6 @@ const BecomeSitter = (): JSX.Element => {
 
   const handleSubmit = () => {
     //TODO: Placeholder for editing profile info to switch between sitter and not a sitter
-    console.log('hello');
     setOpen(false);
   };
 
