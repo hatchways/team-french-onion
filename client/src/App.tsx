@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import { AuthProvider } from './context/useAuthContext';
 import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
+import ManageBookings from './components/ManageBookings/ManageBookings';
 
 import './App.css';
 
@@ -20,6 +21,7 @@ function App(): JSX.Element {
             <SocketProvider>
               <NavBar />
               <Switch>
+                <Route exact path="/booking" component={ManageBookings} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/dashboard">

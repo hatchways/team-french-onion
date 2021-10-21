@@ -55,7 +55,7 @@ const NavBar = (): JSX.Element => {
       {/*Add Box parent to push other content down, can remove box to fix nav bar to top of screen*/}
       <AppBar position="sticky" className={classes.appBar}>
         <LogoHeader />
-        {loggedInUser ? userNav() : guestNav()}
+        {true ? userNav() : guestNav()}
       </AppBar>
     </Box>
   );
