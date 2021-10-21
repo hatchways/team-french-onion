@@ -18,6 +18,25 @@ const useStyles = makeStyles((theme) => ({
       width: '300px',
     },
   },
+  searchWrapper: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    marginTop: 50,
+  },
+  searchText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 25,
+    textAlign: 'center',
+  },
+  listingsWrapper: {
+    marginTop: 50,
+  },
+  listingItem: {
+    textAlign: 'center',
+    alignContent: 'center',
+    flexWrap: 'wrap',
+  },
 }));
 
 export default useStyles;

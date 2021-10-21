@@ -3,15 +3,11 @@ import useStyles from './useStyles';
 import { AppBar, Button } from '@material-ui/core';
 import LogoHeader from '../LogoHeader/LogoHeader';
 import AuthMenu from '../AuthMenu/AuthMenu';
-import { User } from '../../interface/User';
 import { Link as RouterLink } from 'react-router-dom';
 import { Link as MUILink } from '@material-ui/core';
 import AuthHeader from '../AuthHeader/AuthHeader';
 import { useAuth } from '../../context/useAuthContext';
-
-interface Props {
-  loggedIn: boolean;
-}
+import BecomeSitter from './BecomeSitter/BecomeSitter';
 
 const NavBar = (): JSX.Element => {
   const classes = useStyles();
@@ -30,12 +26,13 @@ const NavBar = (): JSX.Element => {
     return (
       <Box display={'flex'} alignItems={'center'} justifyContent={'space-evenly'}>
         {/* TODO: Refactor links to Array.map, going to leave it for now and wait and see 
-        info coming in from profiles as we may need to make changes to Model*/}
+        info coming in from profiles as we may need to make changes to Model
+        <MUILink component={RouterLink} to={"/"}>
+          <Button className={classes.appBarButtons}>Become a sitter</Button>
+        </MUILink>*/}
+        <BecomeSitter />
         <MUILink component={RouterLink} to={'/'}>
           <Button className={classes.appBarButtons}>Notifications</Button>
-        </MUILink>
-        <MUILink component={RouterLink} to={'/'}>
-          <Button className={classes.appBarButtons}>Messages</Button>
         </MUILink>
         <MUILink component={RouterLink} to={'/'}>
           <Button className={classes.appBarButtons}>My Jobs</Button>
