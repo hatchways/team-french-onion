@@ -8,32 +8,23 @@ import MobileDatePicker from '@mui/lab/MobileDatePicker';
 import { IconButton, Typography } from '@material-ui/core';
 import { SearchOutlined } from '@material-ui/icons';
 
-export default function DashboardSearch(): JSX.Element {
+interface Props {
+  handleSearchChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  handleStartDateChange: (newValue: Date | null) => void;
+  handleEndDateChange: (newValue: Date | null) => void;
+  startValue: Date | null;
+  endValue: Date | null;
+}
+
+export default function DashboardSearch({
+  handleSearchChange,
+  handleStartDateChange,
+  handleEndDateChange,
+  startValue,
+  endValue,
+}: Props): JSX.Element {
   const classes = useStyles();
-  const [cityValue, setCityValue] = useState<string | ''>('Search');
-  const [startValue, setStartValue] = useState<Date | null>(new Date());
-  const [endValue, setEndValue] = useState<Date | null>(new Date());
   const initialDate = new Date();
-
-  const handleStartDateChange = (newValue: Date | null) => {
-    setStartValue(newValue);
-  };
-
-  const handleEndDateChange = (newValue: Date | null) => {
-    setEndValue(newValue);
-  };
-
-  const handleCityChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setCityValue(event.target.value);
-  };
-
-  const handleKeyPress = (event: KeyboardEvent<HTMLDivElement>) => {
-    // TODO: Temp placeholder, contains values needed from search to be passed on.
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      alert(`${cityValue}, ${startValue}, ${endValue}`);
-    }
-  };
 
   return (
     <Grid container justify={'center'}>
@@ -42,8 +33,7 @@ export default function DashboardSearch(): JSX.Element {
           id="city"
           label="Search by city"
           variant="outlined"
-          onKeyPress={handleKeyPress}
-          onChange={handleCityChange}
+          onChange={handleSearchChange}
           InputProps={{
             startAdornment: (
               <IconButton>

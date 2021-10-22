@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import picture from '../../Images/d9fc84a0d1d545d77e78aaad39c20c11d3355074.png';
 import { Profile } from '../../interface/Profile';
+import { Link } from 'react-router-dom';
 
 interface Props {
   profile: Profile;
@@ -12,24 +13,33 @@ interface Props {
 
 const ProfileCard = ({ profile }: Props): JSX.Element => {
   const classes = useStyles();
+  const { _id: id, firstName, lastName, description, location, hourlyRate } = profile;
 
   return (
-    <Card elevation={8} sx={{ minWidth: 245, maxWidth: 245, border: 2 }}>
-      <Box>
-        <img className={classes.picture} src={picture} />
-      </Box>
+    <Card
+      component={Link}
+      to={`/profile/${id}`}
+      elevation={8}
+      className={classes.profileCard}
+      sx={{ minWidth: 245, maxWidth: 245, minHeight: 350, maxHeight: 350 }}
+    >
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {`${profile.firstName} ${profile.lastName}`}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {profile.description}
-        </Typography>
+        <Box height={310} display={'flex'} flexDirection={'column'}>
+          <Box flexGrow={1}>
+            <img className={classes.picture} src={picture} />
+            <Typography gutterBottom variant="h5" component="div">
+              {`${firstName} ${lastName}`}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {description}
+            </Typography>
+          </Box>
+          <Box display={'flex'} p={1} mt={5} justifyContent={'space-evenly'} className={classes.infoWrapper}>
+            <Typography>{location}</Typography>
+            <Typography>{`${hourlyRate}/hr`}</Typography>
+          </Box>
+        </Box>
       </CardContent>
-      <Box className={classes.infoWrapper}>
-        <Typography>{profile.location}</Typography>
-        <Typography>$14/hr</Typography>
-      </Box>
     </Card>
   );
 };
