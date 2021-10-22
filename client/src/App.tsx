@@ -9,6 +9,9 @@ import ProfileDetails from './pages/ProfileDetails/ProfileDetails';
 import { AuthProvider } from './context/useAuthContext';
 import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
+import EditProfileForm from './components/EditProfile/EditProfileForm';
+import ProfileSettings from './components/ProfileSettingsNav/ProfileSettingsNav';
+import { useRouteMatch, NavLink, Link } from 'react-router-dom';
 
 import './App.css';
 
@@ -21,6 +24,7 @@ function App(): JSX.Element {
             <SocketProvider>
               <NavBar />
               <Switch>
+                <Route path="/settings" component={ProfileSettings} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/dashboard">

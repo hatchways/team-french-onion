@@ -7,10 +7,14 @@ const timeSchema = new mongoose.Schema({
     required: true,
   },
   //We may need to define a regex for the time range in the future
-  timeRange: {
+  from: {
     type: String,
     required: true,
   },
+  to: {
+    type: String,
+    required: true,
+  }
 });
 
 const profileSchema = new mongoose.Schema({
