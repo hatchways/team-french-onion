@@ -4,41 +4,27 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    paddingBottom: 100,
-  },
-  image: {
-    minWidth: 500,
-    maxWidth: 500,
-    maxHeight: 500,
-    minHeight: 500,
   },
   paperItem: {
-    marginTop: 35,
-    marginLeft: 65,
-    paddingTop: 10,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+    maxWidth: 450,
+    margin: '3rem auto',
+    padding: 7,
+    '& img.image-gallery-image': { height: '56vh' },
   },
   headerText: {
+    position: 'relative',
     paddingTop: 20,
-  },
-  arrowRight: {
-    position: 'absolute',
-    fontSize: 50,
-    right: 0,
-    top: 200,
-    '&:hover': {
-      backgroundColor: 'rgb(0,0,0,0.2)',
-    },
-  },
-  arrowLeft: {
-    position: 'absolute',
-    fontSize: 50,
-    left: 0,
-    top: 200,
-    '&:hover': {
-      backgroundColor: 'rgb(0,0,0,0.2)',
+    '::before': {
+      position: 'absolute',
+      bottom: '100%',
+      left: 0,
+      content: 'fffff',
+      background: '#FD513E',
+      height: 10,
+      width: 160,
     },
   },
 }));

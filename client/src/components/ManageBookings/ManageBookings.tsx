@@ -26,30 +26,37 @@ const ManageBookings = (): JSX.Element => {
     clientName,
     settingsIconWrapper,
     categoryWrapper,
-    calendarContainer,
     avatar,
+    calendarContainer,
     reqStatus,
   } = useStyles();
   return (
     <Grid container>
       <Grid item xs={6}>
-        <Box width={800} marginX="auto">
+        <Box paddingX={5} marginX="auto">
           <Grid container>
             <Grid item xs={12}>
               <Box className={nxtBooking}>
-                <Paper elevation={4}>
+                <Paper
+                  elevation={4}
+                  style={{
+                    backgroundImage: 'linear-gradient(to right top, #ef5350, #f4665e, #f8776d, #fb877c, #fe978b)',
+                  }}
+                >
                   <Box padding={3} marginBottom={3}>
                     <Box marginBottom={2}>
-                      <Typography variant="h5">YOUR NEXT BOOKING</Typography>
+                      <Typography style={{ fontWeight: 'bolder', color: 'gold' }} variant="body1">
+                        YOUR NEXT BOOKING
+                      </Typography>
                     </Box>
 
                     <Grid container>
                       <Grid item xs={7}>
-                        <Typography variant="h6">8 April 2020, 10-12 AM</Typography>
+                        <Typography variant="subtitle1">8 April 2020, 10-12 AM</Typography>
                         <Box className={avatarWrapper}>
                           <Avatar src="nxtBkng.png" className={avatar} />
                         </Box>
-                        <Typography variant="h6" component="span">
+                        <Typography style={{ color: '#fff' }} component="h2" variant="h6">
                           Norma Byers
                         </Typography>
                       </Grid>
@@ -58,7 +65,7 @@ const ManageBookings = (): JSX.Element => {
                           <Settings className={settingsIcon} />
                         </Box>
                         <Box marginY={7}>
-                          <Typography variant="h6" className={clientName}></Typography>
+                          <Typography component="h2" variant="subtitle1" className={clientName}></Typography>
                         </Box>
                       </Grid>
                     </Grid>
@@ -73,7 +80,9 @@ const ManageBookings = (): JSX.Element => {
                     return (
                       <>
                         <Box padding=".5rem 1rem">
-                          <Typography variant="h5">{index === 0 ? 'CURRENT BOOKINGS' : 'PASS BOOKINGS'}</Typography>
+                          <Typography style={{ color: '#ef5350' }} component="h2" variant="body1">
+                            {index === 0 ? 'CURRENT BOOKINGS' : 'PASS BOOKINGS'}
+                          </Typography>
                         </Box>
 
                         {set.map((item) => {
@@ -83,13 +92,15 @@ const ManageBookings = (): JSX.Element => {
                               <Box className={categoryWrapper}>
                                 <Grid container>
                                   <Grid item xs={7}>
-                                    <Typography variant="h6">{date}</Typography>
+                                    <Typography variant="subtitle2">{date}</Typography>
                                     <Box className={avatarWrapper}>
                                       <Avatar src={imgUrl} className={avatar} />
+                                      <Box padding={3}>
+                                        <Typography variant="subtitle1" component="span">
+                                          {name}
+                                        </Typography>
+                                      </Box>
                                     </Box>
-                                    <Typography variant="h6" component="span">
-                                      {name}
-                                    </Typography>
                                   </Grid>
                                   <Grid item xs={5} style={{ position: 'relative' }}>
                                     <Box className={settingsIconWrapper}>

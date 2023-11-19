@@ -2,7 +2,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   authHeader: {
-    alignSelf: 'flex-end',
     justifyContent: 'flex-end',
     alignItems: 'center',
     display: 'flex',
@@ -21,15 +20,20 @@ const useStyles = makeStyles((theme) => ({
   },
   link: { textDecoration: 'none' },
   accBtn: {
-    width: 170,
-    height: 54,
+    width: 160,
     borderRadius: theme.shape.borderRadius,
     filter: 'drop-shadow(0px 2px 6px rgba(74,106,149,0.2))',
-    backgroundColor: '#fd513e',
-    color: '#ffffff',
     boxShadow: 'none',
     marginRight: 5,
+    padding: 10,
+  },
+  appBarButtons: {
+    textTransform: 'uppercase',
+    width: 160,
     fontSize: 15,
+    '&:hover': {
+      backgroundColor: 'rgba(0, 0, 0, 0.3);',
+    },
   },
 }));
 

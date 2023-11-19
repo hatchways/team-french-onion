@@ -20,16 +20,13 @@ export default function Register(): JSX.Element {
     { setSubmitting }: FormikHelpers<{ email: string; password: string; username: string }>,
   ) => {
     register(username, email, password).then((data) => {
-      if (data.error) {
-        console.error({ error: data.error.message });
+      if (data?.error) {
         setSubmitting(false);
-        updateSnackBarMessage(data.error.message);
-      } else if (data.success) {
+        updateSnackBarMessage(data.error);
+      } else if (data?.success) {
         updateLoginContext(data.success);
       } else {
         // should not get here from backend but this catch is for an unknown issue
-        console.error({ data });
-
         setSubmitting(false);
         updateSnackBarMessage('An unexpected error occurred. Please try again');
       }
@@ -41,8 +38,8 @@ export default function Register(): JSX.Element {
       <CssBaseline />
       <Grid item xs={12} sm={12} md={12} elevation={6} component={Paper} square>
         <Box className={classes.authWrapper}>
-          <Box width="50%" alignSelf="center" mt={10} className={classes.loginArea}>
-            <Box width="100%" maxWidth={450} p={3} alignSelf="center">
+          <Box alignSelf="center" className={classes.loginArea}>
+            <Box maxWidth={450} p={3} alignSelf="center">
               <Grid container>
                 <Grid item xs>
                   <Typography className={classes.welcome} component="h1" variant="h5">
