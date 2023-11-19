@@ -9,8 +9,10 @@ import ProfileDetails from './pages/ProfileDetails/ProfileDetails';
 import { AuthProvider } from './context/useAuthContext';
 import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
+import EditProfileForm from './components/EditProfile/EditProfileForm';
+import ProfileSettings from './components/ProfileSettingsNav/ProfileSettingsNav';
+import { useRouteMatch, NavLink, Link } from 'react-router-dom';
 import ManageBookings from './components/ManageBookings/ManageBookings';
-
 import './App.css';
 import Home from './pages/GuestHompage/Home';
 
@@ -23,6 +25,7 @@ function App(): JSX.Element {
             <SocketProvider>
               <NavBar />
               <Switch>
+                <Route path="/settings" component={ProfileSettings} />
                 <Route exact path="/bookings" component={ManageBookings} />
                 <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />
