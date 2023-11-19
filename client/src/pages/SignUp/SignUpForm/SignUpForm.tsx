@@ -32,7 +32,6 @@ interface Props {
 
 const SignUpForm = ({ handleSubmit }: Props): JSX.Element => {
   const classes = useStyles();
-
   return (
     <Formik
       initialValues={{
@@ -111,8 +110,18 @@ const SignUpForm = ({ handleSubmit }: Props): JSX.Element => {
             onChange={handleChange}
           />
           <Box textAlign="center">
-            <Button type="submit" size="large" variant="contained" color="primary" className={classes.submit}>
-              {isSubmitting ? <CircularProgress style={{ color: 'white' }} /> : 'Create'}
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              disabled={isSubmitting}
+              className={classes.submit}
+            >
+              {isSubmitting ? (
+                <CircularProgress style={{ height: '100%', color: 'white' }} size="1.5em" thickness={10} />
+              ) : (
+                'Create'
+              )}
             </Button>
             <DemoUserButton />
           </Box>

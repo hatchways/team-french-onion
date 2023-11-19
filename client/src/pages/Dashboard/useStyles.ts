@@ -4,6 +4,8 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    marginBottom: 30,
+    paddingBottom: 30,
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100vh',
@@ -17,6 +19,21 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       width: '300px',
     },
+  },
+  searchWrapper: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    marginTop: 40,
+    textAlign: 'center',
+  },
+  listingsWrapper: {
+    marginTop: 50,
+    maxWidth: 980,
+  },
+  listingItem: {
+    textAlign: 'center',
+    alignContent: 'center',
+    flexWrap: 'wrap',
   },
 }));
 

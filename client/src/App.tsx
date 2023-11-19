@@ -5,14 +5,16 @@ import NavBar from './components/NavBar/NavBar';
 import Login from './pages/Login/Login';
 import Signup from './pages/SignUp/SignUp';
 import Dashboard from './pages/Dashboard/Dashboard';
+import ProfileDetails from './pages/ProfileDetails/ProfileDetails';
 import { AuthProvider } from './context/useAuthContext';
 import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
 import EditProfileForm from './components/EditProfile/EditProfileForm';
 import ProfileSettings from './components/ProfileSettingsNav/ProfileSettingsNav';
 import { useRouteMatch, NavLink, Link } from 'react-router-dom';
-
+import ManageBookings from './components/ManageBookings/ManageBookings';
 import './App.css';
+import Home from './pages/GuestHompage/Home';
 
 function App(): JSX.Element {
   return (
@@ -24,11 +26,14 @@ function App(): JSX.Element {
               <NavBar />
               <Switch>
                 <Route path="/settings" component={ProfileSettings} />
+                <Route exact path="/bookings" component={ManageBookings} />
+                <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/dashboard">
                   <Dashboard />
                 </Route>
+                <Route exact path="/profile" component={ProfileDetails} />
                 <Route path="*">
                   <Redirect to="/login" />
                 </Route>

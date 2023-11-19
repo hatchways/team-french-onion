@@ -2,8 +2,11 @@ import { useState, MouseEvent } from 'react';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { useAuth } from '../../context/useAuthContext';
-import { User } from '../../interface/User';
-import Avatar from '@material-ui/core/Avatar';
+import Avatar from '@mui/material/Avatar';
+import { Link } from 'react-router-dom';
+import { Box, Button } from '@material-ui/core';
+import { deepOrange } from '@mui/material/colors';
+import useStyles from './useStyles';
 
 const AuthMenu = (): JSX.Element => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -24,14 +27,17 @@ const AuthMenu = (): JSX.Element => {
     logout();
   };
 
+  const { avatarWrapper } = useStyles();
+
   return (
-    <div>
+    <Box className={avatarWrapper}>
       <Avatar
+        sx={{ bgcolor: deepOrange[400], width: 56, height: 56 }}
         aria-label="show auth menu"
         aria-controls="auth-menu"
         aria-haspopup="true"
         onClick={handleClick}
-        alt="Profile Image"
+        alt="logged in user"
         src={`https://robohash.org/${loggedInUser?.email}.png`}
       />
       <Menu
@@ -46,10 +52,12 @@ const AuthMenu = (): JSX.Element => {
         }}
         getContentAnchorEl={null}
       >
-        <MenuItem onClick={handleLogout}>Profile</MenuItem>
+        <MenuItem component={Link} to="/profile">
+          Profile
+        </MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
-    </div>
+    </Box>
   );
 };
 
