@@ -61,24 +61,24 @@ const useStyles = makeStyles((theme) => ({
 
 export default useStyles;
 
-const isStringExpressionBalanced = (str) => {
-  if (!str) return 'Invalid input';
+// const isStringExpressionBalanced = (str) => {
+//   if (!str) return 'Invalid input';
 
-  const stack = [str[0]];
-  const openBrackets = ['(', '{', '['];
-  const closedBrackets = [')', '}', ']'];
+//   const stack = [str[0]];
+//   const openBrackets = ['(', '{', '['];
+//   const closedBrackets = [')', '}', ']'];
 
-  if (closedBrackets.includes(str[0])) return 'Not balanced';
+//   if (closedBrackets.includes(str[0])) return 'Not balanced';
 
-  for (let x = 1; x < str.length; x++) {
-    if (str[x] === closedBrackets[openBrackets.indexOf(stack[stack.length - 1])]) {
-      stack.pop();
-    } else {
-      stack.push(str[x]);
-    }
-  }
+//   for (let x = 1; x < str.length; x++) {
+//     if (str[x] === closedBrackets[openBrackets.indexOf(stack[stack.length - 1])]) {
+//       stack.pop();
+//     } else {
+//       stack.push(str[x]);
+//     }
+//   }
 
-  return !stack.length ? 'Balanced' : 'Not balanced';
-};
+//   return !stack.length ? 'Balanced' : 'Not balanced';
+// };
 
-isStringExpressionBalanced('[()]{}{[()()]()}');
+// isStringExpressionBalanced('[(])');
