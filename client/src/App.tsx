@@ -25,7 +25,7 @@ function App(): JSX.Element {
             <SocketProvider>
               <NavBar />
               <Switch>
-                <Route path="/settings" component={ProfileSettings} />
+                <Route exact path="/settings" component={ProfileSettings} />
                 <Route exact path="/bookings" component={ManageBookings} />
                 <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />
