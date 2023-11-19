@@ -4,44 +4,24 @@ import useStyles from './useStyles';
 import { useAuth } from '../../context/useAuthContext';
 import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
-import { Box, Button, CardMedia, Grid, Paper, Typography } from '@material-ui/core';
+import { Box, Button, Grid, Paper, Typography } from '@material-ui/core';
 import TextField from '@mui/material/TextField';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import { LocalizationProvider, DateTimePicker } from '@mui/lab';
 import { mockProfile1 } from '../../mocks/mockProfile';
-import { ArrowRight, ArrowLeft } from '@material-ui/icons';
+import { Alert } from '@material-ui/lab';
+import { FormikHelpers } from 'formik';
+import 'react-image-gallery/styles/css/image-gallery.css';
+import * as Yup from 'yup';
+
+import { Formik } from 'formik';
+import MyGallery from '../../components/Slider/Slider';
 
 export default function ProfileDetails(): JSX.Element {
   const classes = useStyles();
   const { loggedInUser } = useAuth();
   const history = useHistory();
-  const initialDate = new Date();
-  const { firstName, lastName, location, hourlyRate, description, availability, photos } = mockProfile1;
+  const { photos, hourlyRate, availability, lastName, firstName, description, location } = mockProfile1;
 
-  const [startValue, setStartValue] = useState<Date | null>(new Date());
-  const [endValue, setEndValue] = useState<Date | null>(new Date());
   const [sendRequest, setSendRequest] = useState<boolean>(false);
-  const [currPhotoPage, setCurrPhotoPage] = useState<number>(0);
-
-  const handleStartDateChange = (newValue: Date | null) => {
-    setStartValue(newValue);
-  };
-
-  const handleEndDateChange = (newValue: Date | null) => {
-    setEndValue(newValue);
-  };
-
-  const handleRightArrow = () => {
-    if (currPhotoPage < photos.length - 1) {
-      setCurrPhotoPage(currPhotoPage + 1);
-    }
-  };
-
-  const handleLeftArrow = () => {
-    if (currPhotoPage > 0) {
-      setCurrPhotoPage(currPhotoPage - 1);
-    }
-  };
 
   const handleSendRequest = () => {
     setSendRequest(true);
@@ -49,19 +29,19 @@ export default function ProfileDetails(): JSX.Element {
 
   if (loggedInUser === undefined) return <CircularProgress />;
   if (!loggedInUser) {
-    history.push('/login');
+    history.push('/');
     return <CircularProgress />;
   }
 
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid container>
-        <Grid item xs={7}>
-          <Paper elevation={10} className={classes.paperItem}>
-            <Box px={3} pb={3} minWidth={200}>
+      <Grid container spacing={4}>
+        <Grid item sm={7}>
+          <Box paddingY={3}>
+            <Paper elevation={10} className={classes.paperItem}>
               {/**TODO: Refactor to information from Profile of loggedinuser */}
-              <Box position={'relative'} display={'flex'} justifyContent={'center'}>
+              {/* <Box position={'relative'} display={'flex'} justifyContent={'center'}>
                 <ArrowRight onClick={handleRightArrow} className={classes.arrowRight} />
                 <ArrowLeft onClick={handleLeftArrow} className={classes.arrowLeft} />
                 <CardMedia component="img" image={photos[currPhotoPage]} className={classes.image} />
@@ -74,45 +54,103 @@ export default function ProfileDetails(): JSX.Element {
               </Typography>
               <Typography align={'center'}>{`Availability ${availability?.day?.join(' ')}`}</Typography>
               <Typography>About Me</Typography>
-              <Typography>{description}</Typography>
-            </Box>
-          </Paper>
+              <Typography>{description}</Typography> */}
+              <MyGallery images={photos} />
+              <Box padding={3}>
+                <Typography variant="h5" color="primary" align={'center'} className={classes.headerText}>
+                  {`${firstName} ${lastName}`}
+                </Typography>
+                <Typography variant={'h6'} align={'center'}>
+                  {`${location}`}
+                </Typography>
+                <Typography align={'center'}>{`Availability: ${availability?.day?.join(' ')}`}</Typography>
+                <Typography variant="button" color="primary">
+                  About Me
+                </Typography>
+                <Typography>{description}</Typography>
+              </Box>
+            </Paper>
+          </Box>
         </Grid>
-        <Grid item xs={4}>
-          <Paper elevation={10} className={classes.paperItem}>
-            <Box px={3} minWidth={200}>
+        <Grid item sm={5}>
+          <Box paddingY={3}>
+            <Paper elevation={10} className={classes.paperItem}>
               <Typography variant={'h4'} align={'center'} className={classes.headerText}>
                 {`$${hourlyRate}/hr`}
               </Typography>
               <Box py={4} display={'flex'} flexDirection={'column'} justifyContent={'center'}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DateTimePicker
-                    label={<Typography>Start Date</Typography>}
-                    value={startValue}
-                    minDate={initialDate}
-                    onChange={handleStartDateChange}
-                    renderInput={(params) => <TextField {...params} />}
-                  />
-                  <DateTimePicker
-                    label={<Typography>End Date</Typography>}
-                    value={endValue}
-                    minDate={initialDate}
-                    onChange={handleEndDateChange}
-                    renderInput={(params) => <TextField {...params} />}
-                  />
-                </LocalizationProvider>
+                <Formik
+                  initialValues={{ where: 'lag', di: '2023-11-05', do: '2023-12-09' }}
+                  validationSchema={Yup.object().shape({
+                    where: Yup.string().required('Location is required'),
+                    di: Yup.string().required('Drop in is required'),
+                    do: Yup.string().required('Drop off is required'),
+                  })}
+                  onSubmit={(vals) => console.log(vals)}
+                >
+                  {({ handleSubmit, handleChange, values, touched, errors, isSubmitting }) => (
+                    <form onSubmit={handleSubmit} noValidate name="guestSearchForm">
+                      <Box maxWidth={300} marginX="auto">
+                        <TextField
+                          label={<Typography>Start Date</Typography>}
+                          margin="normal"
+                          fullWidth
+                          InputLabelProps={{
+                            shrink: true,
+                          }}
+                          name="di"
+                          type="date"
+                          helperText={touched.di ? errors.di : ''}
+                          error={touched.di && Boolean(errors.di)}
+                          value={values.di}
+                          variant="outlined"
+                          onChange={handleChange}
+                        >
+                          Drop in
+                        </TextField>
+                        <TextField
+                          label={<Typography>End Date</Typography>}
+                          margin="normal"
+                          fullWidth
+                          InputLabelProps={{
+                            shrink: true,
+                          }}
+                          name="do"
+                          type="date"
+                          helperText={touched.do ? errors.do : ''}
+                          error={touched.do && Boolean(errors.do)}
+                          value={values.do}
+                          variant="outlined"
+                          onChange={handleChange}
+                        >
+                          Drop off
+                        </TextField>
+                      </Box>
+                    </form>
+                  )}
+                </Formik>
               </Box>
-              {!sendRequest ? (
-                <Button fullWidth onClick={handleSendRequest}>
-                  Send Request
-                </Button>
-              ) : (
-                <Box textAlign={'center'}>Request Sent!</Box>
-              )}
-
-              <Button fullWidth>Message</Button>
-            </Box>
-          </Paper>
+              <Box marginBottom={3}>
+                {!sendRequest ? (
+                  <Box textAlign="center" marginBottom={2}>
+                    <Button color="primary" variant="outlined" style={{ width: 150 }} onClick={handleSendRequest}>
+                      {' '}
+                      Send Request
+                    </Button>
+                  </Box>
+                ) : (
+                  <Box>
+                    <Alert severity="success">Request sent!</Alert>
+                  </Box>
+                )}
+                <Box textAlign="center">
+                  <Button color="primary" variant="contained" style={{ width: 150 }}>
+                    Message
+                  </Button>
+                </Box>
+              </Box>
+            </Paper>
+          </Box>
         </Grid>
       </Grid>
     </Grid>

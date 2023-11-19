@@ -9,8 +9,9 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
-import { Checkbox, FormGroup, TextField, Typography } from '@material-ui/core';
+import { Checkbox, FormGroup, Grid, TextField, Typography } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
+import { Close } from '@material-ui/icons';
 
 const BecomeSitter = (): JSX.Element => {
   const classes = useStyles();
@@ -58,8 +59,20 @@ const BecomeSitter = (): JSX.Element => {
       <Button className={classes.appBarButtons} onClick={handleClickOpen}>
         Become a sitter
       </Button>
-      <Dialog fullWidth={true} maxWidth={'sm'} open={open} onClose={handleClose}>
-        <DialogTitle>Become a sitter</DialogTitle>
+      <Dialog style={{ padding: 50 }} fullWidth={true} maxWidth={'sm'} open={open} onClose={handleClose}>
+        <Box display="flex" justifyContent="space-between">
+          <DialogTitle>
+            <Typography color="primary" variant="h6">
+              Become a sitter
+            </Typography>
+          </DialogTitle>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary" type={'submit'}>
+              <Close style={{ fontSize: '3rem' }} />
+            </Button>
+          </DialogActions>
+        </Box>
+
         <DialogContent>
           <DialogContentText>Please set your availability to become a sitter.</DialogContentText>
           <Box
@@ -70,36 +83,57 @@ const BecomeSitter = (): JSX.Element => {
             m={'auto'}
             width={'fit-content'}
           >
-            <FormControl>
+            <form>
               <Box display={'flex'} mb={2} alignItems={'center'}>
-                <Typography className={classes.labels}>{isSitter ? `I'M AVAILABLE` : `I'M NOT AVAILABLE`}</Typography>
-                <Switch checked={isSitter} onChange={handleSitter} />
+                <Grid container spacing={3} alignItems="center">
+                  <Grid item xs={4}>
+                    <Typography className={classes.labels}>
+                      {isSitter ? `I'M AVAILABLE` : `I'M NOT AVAILABLE`}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Switch checked={isSitter} onChange={handleSitter} />
+                  </Grid>
+                </Grid>
               </Box>
               <Box display={'flex'} mb={2} alignItems={'center'}>
-                <Typography className={classes.labels}>AVAILABILITY:</Typography>
-                <FormGroup>
-                  <Box>
-                    {Object.entries(state).map(([key, value], index) => (
-                      <FormControlLabel
-                        key={index}
-                        control={<Checkbox checked={value} disabled={!isSitter} onChange={handleChange} name={key} />}
-                        label={key}
-                      />
-                    ))}
-                  </Box>
-                </FormGroup>
+                <Grid spacing={3} container>
+                  <Grid item>
+                    <Typography className={classes.labels}>AVAILABILITY: </Typography>
+                  </Grid>
+                  <Grid item>
+                    <FormGroup>
+                      <Box>
+                        {Object.entries(state).map(([key, value], index) => (
+                          <FormControlLabel
+                            key={index}
+                            control={
+                              <Checkbox checked={value} disabled={!isSitter} onChange={handleChange} name={key} />
+                            }
+                            label={key}
+                          />
+                        ))}
+                      </Box>
+                    </FormGroup>
+                  </Grid>
+                </Grid>
               </Box>
-              <Box display={'flex'} mb={2} alignItems={'center'}>
-                <Typography className={classes.labels}>PRICE</Typography>
-                <TextField disabled={!isSitter} id="price" label="price" variant="outlined" />
+              <Grid container spacing={3} alignItems="center">
+                <Grid item>
+                  <Typography className={classes.labels}>PRICE: </Typography>
+                </Grid>
+                <Grid item>
+                  <TextField disabled={!isSitter} id="price" label="price" variant="outlined" />
+                </Grid>
+              </Grid>
+              <Box padding={3} marginTop={4} textAlign="center">
+                <Button size="large" variant="contained" color="primary" type={'submit'}>
+                  Save
+                </Button>
               </Box>
-              <Button type={'submit'}>Save</Button>
-            </FormControl>
+            </form>
           </Box>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Close</Button>
-        </DialogActions>
       </Dialog>
     </Fragment>
   );

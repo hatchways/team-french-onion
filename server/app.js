@@ -8,15 +8,18 @@ const connectDB = require("./db");
 const { join } = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+require('dotenv').config()
 
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 const notificationRouter = require("./routes/notification");
 const requestRouter = require("./routes/request");
 const profileRouter = require("./routes/profile");
+const generateJwtSecretKey = require('./utils/generateJwtKey')
 
 const { json, urlencoded } = express;
 
+// console.log(generateJwtSecretKey())
 connectDB();
 const app = express();
 const server = http.createServer(app);

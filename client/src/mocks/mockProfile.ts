@@ -4,9 +4,9 @@ import photo2 from '../Images/b1f0e680702e811aa8ba333cb19c0e0ea95e8e31.png';
 import photo3 from '../Images/d9fc84a0d1d545d77e78aaad39c20c11d3355074.png';
 
 const mockProfile1: Profile = {
-  firstName: 'firtstas',
+  firstName: 'Firtstas',
   lastName: 'Lastsas',
-  location: 'toronto',
+  location: 'Toronto',
   phoneNumber: 2345679876,
   isSitter: false,
   description:
@@ -15,13 +15,17 @@ const mockProfile1: Profile = {
   availability: {
     day: ['Mon', 'Wed'],
   },
-  photos: [photo1, photo2, photo3],
+  photos: [
+    { original: photo1, thumbnail: photo1 },
+    { original: photo2, thumbnail: photo2 },
+    { original: photo3, thumbnail: photo3 },
+  ],
 };
 
 const mockProfile2: Profile = {
-  firstName: 'ferrestas',
+  firstName: 'Ferrestas',
   lastName: 'Lasdsd',
-  location: 'blanca',
+  location: 'Tlanca',
   phoneNumber: 2345679876,
   isSitter: false,
   description:
@@ -30,6 +34,6 @@ const mockProfile2: Profile = {
   photos: [],
 };
 
-const mockProfiles: Profile[] = [mockProfile1, mockProfile2];
+const mockProfiles: Profile[] = [mockProfile1, mockProfile2, mockProfile1, mockProfile1];
 
 export { mockProfiles, mockProfile1, mockProfile2 };

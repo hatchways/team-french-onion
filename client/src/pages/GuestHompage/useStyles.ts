@@ -20,13 +20,12 @@ const useStyles = makeStyles((theme) => ({
     color: '#3a8dff',
   },
   submit: {
-    margin: theme.spacing(3, 2, 2),
-    width: 160,
+    width: 200,
     borderRadius: theme.shape.borderRadius,
-    marginTop: 49,
     fontSize: 16,
     backgroundColor: '#fd513e',
     fontWeight: 'bold',
+    textTransform: 'uppercase',
   },
 }));
 

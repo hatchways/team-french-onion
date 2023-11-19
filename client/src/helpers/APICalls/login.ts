@@ -10,6 +10,7 @@ const login = async (email: string, password: string): Promise<AuthApiData> => {
   };
   return await fetch(`/auth/login`, fetchOptions)
     .then((res) => res.json())
+    .then((res) => res)
     .catch(() => ({
       error: { message: 'Unable to connect to server. Please try again' },
     }));

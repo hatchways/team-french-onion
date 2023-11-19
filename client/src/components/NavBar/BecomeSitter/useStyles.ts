@@ -5,12 +5,11 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
   },
   appBarButtons: {
-    fontFamily: 'Arial',
-    fontSize: 14,
-    padding: 5,
+    fontSize: 15,
+    textUnderlineOffset: 2,
+    textDecoration: 'underline',
     '&:hover': {
       backgroundColor: 'rgba(0, 0, 0, 0.3);',
-      textDecoration: 'underline',
     },
   },
 }));

@@ -12,6 +12,7 @@ import { SnackBarProvider } from './context/useSnackbarContext';
 import ManageBookings from './components/ManageBookings/ManageBookings';
 
 import './App.css';
+import Home from './pages/GuestHompage/Home';
 
 function App(): JSX.Element {
   return (
@@ -22,7 +23,8 @@ function App(): JSX.Element {
             <SocketProvider>
               <NavBar />
               <Switch>
-                <Route exact path="/booking" component={ManageBookings} />
+                <Route exact path="/bookings" component={ManageBookings} />
+                <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/dashboard">

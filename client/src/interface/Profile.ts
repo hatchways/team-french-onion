@@ -17,7 +17,7 @@ export interface Profile {
   location?: string;
   phoneNumber?: number;
   availability?: Availability;
-  photos: string[];
+  photos: { original: string; thumbnail: string }[];
   isSitter?: boolean;
   hourlyRate?: number;
 }

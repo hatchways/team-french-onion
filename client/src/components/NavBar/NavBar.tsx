@@ -1,6 +1,6 @@
 import Box from '@material-ui/core/Box';
 import useStyles from './useStyles';
-import { AppBar, Button } from '@material-ui/core';
+import { AppBar, Button, useMediaQuery } from '@material-ui/core';
 import LogoHeader from '../LogoHeader/LogoHeader';
 import AuthMenu from '../AuthMenu/AuthMenu';
 import { Link as RouterLink } from 'react-router-dom';
@@ -11,13 +11,14 @@ import BecomeSitter from './BecomeSitter/BecomeSitter';
 
 const NavBar = (): JSX.Element => {
   const classes = useStyles();
-  const { loggedInUser } = useAuth();
+  const isSmallScreen = useMediaQuery('(max-width:600px)');
 
+  const { loggedInUser } = useAuth();
   const guestNav = () => {
     return (
-      <Box display={'flex'}>
-        <AuthHeader linkTo="/login" asideText="" btnText="LOGIN" />
-        <AuthHeader linkTo="/signup" asideText="" btnText="SIGNUP" />
+      <Box display="flex" justifyContent="center">
+        <AuthHeader linkTo="/login" btnText="Login" />
+        <AuthHeader linkTo="/signup" btnText="Signup" />
       </Box>
     );
   };
@@ -25,19 +26,16 @@ const NavBar = (): JSX.Element => {
   const userNav = () => {
     return (
       <Box display={'flex'} alignItems={'center'} justifyContent={'space-evenly'}>
-        {/* TODO: Refactor links to Array.map, going to leave it for now and wait and see 
-        info coming in from profiles as we may need to make changes to Model
-        <MUILink component={RouterLink} to={"/"}>
-          <Button className={classes.appBarButtons}>Become a sitter</Button>
-        </MUILink>*/}
-        <BecomeSitter />
-        <MUILink component={RouterLink} to={'/'}>
+        <MUILink>
+          <BecomeSitter />
+        </MUILink>
+        <MUILink component={RouterLink} to={'/profile'}>
           <Button className={classes.appBarButtons}>Notifications</Button>
         </MUILink>
         <MUILink component={RouterLink} to={'/'}>
           <Button className={classes.appBarButtons}>My Jobs</Button>
         </MUILink>
-        <MUILink component={RouterLink} to={'/'}>
+        <MUILink component={RouterLink} to={'/bookings'}>
           <Button className={classes.appBarButtons}>Requests</Button>
         </MUILink>
         <Box px={3}>
@@ -50,9 +48,13 @@ const NavBar = (): JSX.Element => {
   return (
     <Box height="70">
       {/*Add Box parent to push other content down, can remove box to fix nav bar to top of screen*/}
-      <AppBar position="sticky" className={classes.appBar}>
+      <AppBar
+        position="sticky"
+        className={classes.appBar}
+        style={isSmallScreen ? { flexDirection: 'column' } : undefined}
+      >
         <LogoHeader />
-        {loggedInUser && loggedInUser.username && loggedInUser.email ? userNav() : guestNav()}
+        {loggedInUser?.username && loggedInUser.email ? userNav() : guestNav()}
       </AppBar>
     </Box>
   );

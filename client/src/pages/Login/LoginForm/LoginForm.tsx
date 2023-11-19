@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import useStyles from './useStyles';
 import { CircularProgress } from '@material-ui/core';
 import DemoUserButton from '../../../components/DemoUserButton/DemoUserButton';
+import { useState } from 'react';
+import { demoUser } from '../../../mocks/mockUser';
 
 interface Props {
   handleSubmit: (
@@ -32,10 +34,7 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
 
   return (
     <Formik
-      initialValues={{
-        email: '',
-        password: '',
-      }}
+      initialValues={demoUser}
       validationSchema={Yup.object().shape({
         email: Yup.string().required('Email is required').email('Email is not valid'),
         password: Yup.string()
@@ -46,7 +45,7 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
       onSubmit={handleSubmit}
     >
       {({ handleSubmit, handleChange, values, touched, errors, isSubmitting }) => (
-        <form onSubmit={handleSubmit} className={classes.form} noValidate>
+        <form onSubmit={handleSubmit} className={classes.form} noValidate name="login">
           <TextField
             id="email"
             label={<Typography className={classes.label}>E-mail address</Typography>}
@@ -88,10 +87,20 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
             onChange={handleChange}
           />
           <Box textAlign="center">
-            <Button type="submit" size="large" variant="contained" color="primary" className={classes.submit}>
-              {isSubmitting ? <CircularProgress style={{ color: 'white' }} /> : 'Login'}
+            <Button
+              type="submit"
+              size="large"
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <CircularProgress style={{ height: '100%', color: 'white' }} size="1.5em" thickness={10} />
+              ) : (
+                'Login'
+              )}
             </Button>
-            <DemoUserButton />
           </Box>
           <div style={{ height: 95 }} />
         </form>
